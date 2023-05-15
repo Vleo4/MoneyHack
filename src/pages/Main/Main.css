@@ -20,7 +20,12 @@
   );
 }
 
-.main-header h1 {
+.logo-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-wrapper h1 {
   font-family: var(--font-mont);
   font-style: normal;
   font-weight: 800;
@@ -74,6 +79,7 @@
   font-size: 24px;
   line-height: 29px;
   color: #ffffff;
+  text-align: center;
 }
 
 .content p {
@@ -86,8 +92,14 @@
   margin-top: 16px;
 }
 
+.service-text-wrapper {
+  width: 100%;
+  display: flex;
+  padding: 0 32px;
+  justify-content: center;
+}
+
 .service-text {
-  margin-top: 48px;
   background: #17211a;
   border-radius: 12px;
   height: 61px;
@@ -97,6 +109,16 @@
   max-width: 674px;
   width: 100%;
   z-index: 2;
+  position: relative;
+  top: -1130px;
+}
+
+.service-text h2 {
+  font-family: var(--font-mont);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 21px;
+  color: #ffffff;
 }
 
 .content h2 {
@@ -131,42 +153,69 @@
   background: #0c0f0c;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
   border-radius: 24px;
-
   max-width: 1392px;
   width: 100%;
   position: relative;
   top: -1160px;
   padding: 96px 128px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.spend-block-text {
+.profit-block {
+  background: #0c0f0c;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+
+  max-width: 1392px;
+  width: 100%;
+  position: relative;
+  top: -1100px;
+  padding: 96px 128px;
+  margin-bottom: -1000px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.spend-block-text,
+.profit-block-text {
   display: flex;
   flex-direction: column;
 }
 
-.spend-block-text h2 {
+.spend-block-text h2,
+.profit-block-text h2 {
   font-family: var(--font-mont);
   font-weight: 600;
   font-size: 24px;
   line-height: 29px;
   color: rgba(255, 255, 255, 0.7);
+  text-align: center;
 }
 
-.spend-block-text-wrapper {
+.spend-block-text-wrapper,
+.profit-block-text-wrapper {
   display: flex;
   flex-direction: column;
   max-width: 368px;
   margin-top: 28px;
+  width: 100%;
 }
 
-.spend-block-text_data {
+.spend-block-text_data,
+.profit-block-text_data {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
   padding: 4px 0px;
+  align-items: center;
 }
 
-.spend-block-text_data p {
+.spend-block-text_data p,
+.profit-block-text_data p {
   font-family: var(--font-mont);
   font-weight: 400;
   font-size: 20px;
@@ -179,6 +228,228 @@
   border-radius: 6px;
 }
 
+.profit-block-text_data:hover {
+  background: rgba(91, 209, 35, 0.3);
+  border-radius: 6px;
+}
+
 .spend-block-text_data:hover p {
   color: #88ffb0;
+}
+
+.profit-block-text_data:hover p {
+  color: #9eff71;
+}
+
+.footer {
+  background: #0c0f0c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 105px;
+  gap: 16px;
+}
+
+.footer img {
+  width: 33.33px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.footer p {
+  font-family: var(--font-mont);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.spend-block-piechart,
+.profit-block-piechart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    82.71% 82.71% at 50% 50%,
+    rgba(0, 95, 26, 0.8) 0%,
+    rgba(12, 15, 12, 0) 51.56%
+  );
+}
+
+.profit-block-piechart {
+  background: radial-gradient(
+    82.71% 82.71% at 50% 50%,
+    rgba(42, 95, 0, 0.8) 0%,
+    rgba(12, 15, 12, 0) 51.56%
+  );
+}
+
+.piechart-test {
+  height: 513px;
+  width: 513px;
+}
+
+@media screen and (max-width: 1280px) {
+  .main-header h1 {
+    font-size: 88px;
+    line-height: 116px;
+  }
+  .piechart-test {
+    height: 363px;
+    width: 363px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .border {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    background: #0d140f;
+  }
+
+  .content {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .spend-block,
+  .profit-block {
+    padding: 96px 32px;
+    border-radius: 0;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-header h1 {
+    font-size: 58px;
+    line-height: 86px;
+  }
+  .main-header h2 {
+    font-size: 30px;
+    line-height: 39px;
+    padding: 0 32px;
+    text-align: center;
+  }
+  .spend-block,
+  .profit-block {
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    box-shadow: none;
+  }
+
+  .service-text {
+    top: -1030px;
+  }
+  .spend-block {
+    top: -1060px;
+  }
+
+  .profit-block {
+    top: -1060px;
+    margin-bottom: -1060px;
+  }
+  .spend-block-text,
+  .profit-block-text {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .content {
+    padding: 24px 32px;
+  }
+  .logo-wrapper {
+    text-align: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .main-header h1 {
+    font-size: 48px;
+    line-height: 50px;
+  }
+  .main-header h2 {
+    font-size: 30px;
+    line-height: 39px;
+    padding: 0 32px;
+    text-align: center;
+  }
+
+  .service-text {
+    top: -930px;
+  }
+  .spend-block {
+    top: -960px;
+  }
+
+  .profit-block {
+    top: -960px;
+    margin-bottom: -960px;
+  }
+  .piechart-test {
+    height: 263px;
+    width: 263px;
+  }
+
+  .spend-block,
+  .profit-block {
+    padding: 96px 32px;
+  }
+  .main-header h2 {
+    font-size: 30px;
+    line-height: 39px;
+    padding: 0 32px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .content {
+    padding: 24px 16px;
+  }
+  .main-header h2 {
+    font-size: 30px;
+    line-height: 39px;
+    padding: 0 16px;
+    text-align: center;
+  }
+  .spend-block,
+  .profit-block {
+    padding: 96px 16px;
+  }
+  .main-header h2 {
+    font-size: 30px;
+    line-height: 39px;
+    padding: 0 16px;
+    text-align: center;
+  }
+  .service-text-wrapper {
+    padding: 0 16px;
+  }
+  .service-text {
+    top: -830px;
+  }
+  .spend-block {
+    top: -860px;
+  }
+
+  .profit-block {
+    top: -860px;
+    margin-bottom: -860px;
+  }
+  .spend-block-text_data,
+  .profit-block-text_data {
+    padding: 8px 0px;
+    gap: 15px;
+  }
+
+  .spend-block-text_data p,
+  .profit-block-text_data p {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
