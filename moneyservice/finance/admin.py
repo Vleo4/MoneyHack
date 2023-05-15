@@ -6,3 +6,6 @@ from .models import *
 
 admin.site.register(FinanceUser)
 admin.site.register(Credit)
+admin.site.register(Loss)
+admin.site.register(Profit)
+admin.site.register(Deposit)

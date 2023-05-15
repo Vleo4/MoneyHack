@@ -67,6 +67,7 @@ class Credit(models.Model):
     type_of_credit = models.CharField(max_length=1, choices=TYPE_CHOICES)
     from_where = models.CharField(max_length=255)
     user = models.ForeignKey(FinanceUser, on_delete=models.CASCADE)
+    is_closed = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.percentage}% credit from {self.from_where}'
@@ -74,3 +75,45 @@ class Credit(models.Model):
     def max_value(self):
         period = (self.end_time.year - self.start_time.year)
         return self.value * (1 + self.percentage * period)
+
+
+class Loss(models.Model):
+    note = models.CharField(max_length=250, blank=True, null=True)
+    value = models.DecimalField(max_digits=20, decimal_places=2)
+    category = models.CharField(max_length=150)
+    time = models.DateTimeField()
+    user = models.ForeignKey(FinanceUser, on_delete=models.CASCADE)
+    #loss tracking from credits?
+
+class Profit(models.Model):
+    note = models.CharField(max_length=250, blank=True, null=True)
+    value = models.DecimalField(max_digits=20, decimal_places=2)
+    category = models.CharField(max_length=150)
+    time = models.DateTimeField()
+    user = models.ForeignKey(FinanceUser, on_delete=models.CASCADE)
+
+class Deposit(models.Model):
+    note = models.CharField(max_length=250, blank=True, null=True)
+    TYPE_CHOICES = (
+        ('M', 'Monthly Payments'),
+        ('A', 'Annual Payments'),
+    )
+    percentage = models.DecimalField(
+        max_digits=5,
+        decimal_places=3,
+        validators=[MinValueValidator(0), MaxValueValidator(100)]
+    )
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    value = models.DecimalField(max_digits=20, decimal_places=2)
+    type_of_credit = models.CharField(max_length=1, choices=TYPE_CHOICES)
+    from_where = models.CharField(max_length=255)
+    user = models.ForeignKey(FinanceUser, on_delete=models.CASCADE)
+    is_closed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.percentage}% deposit to {self.from_where}'
+
+    def max_value(self):
+        period = (self.end_time.year - self.start_time.year)
+        return self.value * pow((1 + self.percentage / 100), period)
