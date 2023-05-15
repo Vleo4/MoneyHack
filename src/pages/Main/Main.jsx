@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Main.css";
+import { images } from "../../constants";
 
 const Main = () => {
   const spendData = [
@@ -57,26 +58,45 @@ const Main = () => {
     },
   ];
 
-  /* const chartSpendData = [
-    ["Продукти", 40],
-    ["Кафе та ресторани", 10],
-    ["Інше", 10],
-    ["Розваги та спорт", 7.1],
-    ["Поповнення мобільного", 5.1],
-    ["Медицина", 5.1],
-    ["Подорожі", 5.1],
-    ["Таксі", 5.1],
-    ["Комунальні послуги", 3.1],
-    ["Одяг та взуття", 2.5],
-    ["Кіно", 2.1],
-    ["Тварини", 1.4],
-    ["Книги", 0.9],
-  ]; */
+  const profitData = [
+    {
+      category: "Заробітна плата",
+      value: 31.6,
+    },
+    {
+      category: "Бізнес-прибуток",
+      value: 29.4,
+    },
+    {
+      category: "Інвестиційний дохід",
+      value: 9.3,
+    },
+    {
+      category: "Капітальний дохід",
+      value: 8.7,
+    },
+    {
+      category: "Премії",
+      value: 7,
+    },
+    {
+      category: "Продаж товарів",
+      value: 7,
+    },
+    {
+      category: "Авторські винагороди",
+      value: 7,
+    },
+  ];
 
   return (
     <div className="main">
       <div className="main-header">
-        <h1>MONEYHACK</h1>
+        <div className="logo-wrapper">
+          <h1>MONEY</h1>
+          <h1>HACK</h1>
+        </div>
+
         <h2>Володійте своїми фінансами</h2>
       </div>
       <div className="main-section">
@@ -95,12 +115,13 @@ const Main = () => {
             <Link to="/" className="try-now">
               Спробувати зараз!
             </Link>
-            <div className="service-text">
-              <h2>Що може наш сервіс?</h2>
-            </div>
           </div>
         </div>
-
+        <div className="service-text-wrapper">
+          <div className="service-text">
+            <h2>Що може наш сервіс?</h2>
+          </div>
+        </div>
         <div className="spend-block">
           <div className="spend-block-text">
             <h2>Кількість витрат у категорії</h2>
@@ -113,8 +134,40 @@ const Main = () => {
               ))}
             </div>
           </div>
-          <div className="spend-block-piechart"></div>
+          <div className="spend-block-piechart">
+            {/* ------------------ ТУТ ТРЕБА СПРАВЖНІЙ ГРАФІК ЗАМІСТЬ ФОТКИ -------------------*/}
+            <img
+              src={images.Piechart}
+              alt="Piechart"
+              className="piechart-test"
+            />
+          </div>
         </div>
+        <div className="profit-block">
+          <div className="profit-block-text">
+            <h2>Кількість профіту за рік</h2>
+            <div className="profit-block-text-wrapper">
+              {profitData.map((profit) => (
+                <div className="profit-block-text_data" key={profit.category}>
+                  <p>{profit.category}</p>
+                  <p>{profit.value}%</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="profit-block-piechart">
+            {/* ------------------ ТУТ ТРЕБА СПРАВЖНІЙ ГРАФІК ЗАМІСТЬ ФОТКИ -------------------*/}
+            <img
+              src={images.Piechart}
+              alt="Piechart"
+              className="piechart-test"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="footer">
+        <img src={images.GitHub} alt="GitHub" />
+        <p>© Saton Team</p>
       </div>
     </div>
   );
