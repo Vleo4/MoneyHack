@@ -161,6 +161,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  background: radial-gradient(94.36% 181.75% at 72.99% 50.07%, rgba(0, 95, 26, 0.7) 0%, rgba(12, 15, 12, 0) 56.32%), #0C0F0C;
 }
 
 .profit-block {
@@ -178,6 +180,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  background: radial-gradient(94.36% 181.75% at 72.99% 50.07%, rgba(42, 95, 0, 0.7) 0%, rgba(12, 15, 12, 0) 56.32%), #0C0F0C;
 }
 
 .spend-block-text,
@@ -270,19 +274,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    82.71% 82.71% at 50% 50%,
-    rgba(0, 95, 26, 0.8) 0%,
-    rgba(12, 15, 12, 0) 51.56%
-  );
-}
-
-.profit-block-piechart {
-  background: radial-gradient(
-    82.71% 82.71% at 50% 50%,
-    rgba(42, 95, 0, 0.8) 0%,
-    rgba(12, 15, 12, 0) 51.56%
-  );
 }
 
 .piechart-test {
