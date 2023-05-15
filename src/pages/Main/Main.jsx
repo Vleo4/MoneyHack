@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Main.css";
 import { images } from "../../constants";
+import {Doughnut} from "../../components/index.js";
 
 const Main = () => {
   const spendData = [
@@ -135,12 +136,7 @@ const Main = () => {
             </div>
           </div>
           <div className="spend-block-piechart">
-            {/* ------------------ ТУТ ТРЕБА СПРАВЖНІЙ ГРАФІК ЗАМІСТЬ ФОТКИ -------------------*/}
-            <img
-              src={images.Piechart}
-              alt="Piechart"
-              className="piechart-test"
-            />
+            <Doughnut data={spendData}/>
           </div>
         </div>
         <div className="profit-block">
@@ -156,12 +152,7 @@ const Main = () => {
             </div>
           </div>
           <div className="profit-block-piechart">
-            {/* ------------------ ТУТ ТРЕБА СПРАВЖНІЙ ГРАФІК ЗАМІСТЬ ФОТКИ -------------------*/}
-            <img
-              src={images.Piechart}
-              alt="Piechart"
-              className="piechart-test"
-            />
+            <Doughnut data={profitData}/>
           </div>
         </div>
       </div>
