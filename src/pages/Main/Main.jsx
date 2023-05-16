@@ -2,9 +2,37 @@ import { Link } from "react-router-dom";
 import "./Main.css";
 import { images } from "../../constants";
 import { MyDoughnut } from "../../components";
+import {useEffect, useState} from "react";
 
 
 const Main = () => {
+  const [hover, setHover] = useState([]);
+  const [hover2, setHover2] = useState([]);
+  const handleHover = (index, bool) => {
+    setHover((prevHover) => {
+      return prevHover.map((value,howIndex) => {
+        if (howIndex === index) {
+          return bool;
+        } else {
+          return false;
+        }
+      });
+    });
+  };
+  const handleHover2 = (index, bool) => {
+    console.log(bool);
+    setHover2((prevHover) => {
+      return prevHover.map((value,howIndex) => {
+        if (howIndex === index) {
+          return bool;
+        } else {
+          return false;
+        }
+      });
+    });
+    console.log(hover2);
+  };
+
   const spendData = [
     {
       category: "Продукти",
@@ -90,7 +118,14 @@ const Main = () => {
       value: 7,
     },
   ];
-
+  useEffect(()=>{
+    const hoverArray = spendData.map(()=>false);
+    setHover(hoverArray);
+  },[])
+  useEffect(()=>{
+    const hoverArray = profitData.map(()=>false);
+    setHover2(hoverArray);
+  },[])
   return (
     <div className="main">
       <div className="main-header">
@@ -128,8 +163,11 @@ const Main = () => {
           <div className="spend-block-text">
             <h2>Кількість витрат у категорії</h2>
             <div className="spend-block-text-wrapper">
-              {spendData.map((spend) => (
-                <div className="spend-block-text_data" key={spend.category}>
+              {spendData.map((spend,index) => (
+                <div className="spend-block-text_data"
+                     onMouseOver={()=>{handleHover(index,true)}}
+                     onMouseLeave={()=>{handleHover(index,false)}}
+                     key={spend.category}>
                   <p>{spend.category}</p>
                   <p>{spend.value}%</p>
                 </div>
@@ -137,15 +175,18 @@ const Main = () => {
             </div>
           </div>
           <div className="spend-block-piechart">
-            <MyDoughnut data={spendData} background={"rgba(0, 95, 26, 0.7)"}/>
+            <MyDoughnut hover={hover} data={spendData} background={"rgba(0, 95, 26, 0.7)"}/>
           </div>
         </div>
         <div className="profit-block">
           <div className="profit-block-text">
             <h2>Кількість профіту за рік</h2>
             <div className="profit-block-text-wrapper">
-              {profitData.map((profit) => (
-                <div className="profit-block-text_data" key={profit.category}>
+              {profitData.map((profit,index) => (
+                <div className="profit-block-text_data"
+                     onMouseLeave={()=>{handleHover2(index,false)}}
+                     onMouseOver={()=>{handleHover2(index,true)}}
+                     key={profit.category}>
                   <p>{profit.category}</p>
                   <p>{profit.value}%</p>
                 </div>
@@ -153,7 +194,7 @@ const Main = () => {
             </div>
           </div>
           <div className="profit-block-piechart">
-            <MyDoughnut data={profitData} background={"rgba(42, 95, 0, 0.7)"}/>
+            <MyDoughnut hover={hover2} data={profitData} background={"rgba(42, 95, 0, 0.7)"}/>
           </div>
         </div>
       </div>
