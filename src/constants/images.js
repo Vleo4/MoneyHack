@@ -13,6 +13,15 @@ import Profit from '../assets/Sidebar/Profit.svg';
 import Report from '../assets/Sidebar/Report.svg';
 import Spend from '../assets/Sidebar/Spend.svg';
 
+// PROFIT
+
+import Arrows from '../assets/Profit/Arrows.svg';
+import Edit from '../assets/Profit/Edit.svg';
+import Delete from '../assets/Profit/Delete.svg';
+import Add from '../assets/Profit/Add.svg';
+import Check from '../assets/Profit/Check.svg';
+import ArrowDown from '../assets/Profit/ArrowDown.svg';
+
 export default {
     // MAIN
     MoneyBG,
@@ -27,4 +36,12 @@ export default {
     Profit,
     Report,
     Spend,
+
+    // PROFIT
+    Arrows,
+    Edit,
+    Delete,
+    Add,
+    Check,
+    ArrowDown,
 }

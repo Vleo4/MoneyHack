@@ -29,9 +29,9 @@ const Layout = () => {
   }, []);
 
   return (
-    <>
-      {!hideSidebar && (isMobile ? <BurgerMenu /> : <Sidebar />)}
+     <>
       <div className="main-content">
+      {!hideSidebar && (isMobile ? <BurgerMenu /> : <Sidebar />)}
         <Routes>
           <Route path="/" exact element={<Main />} />
           <Route path="/profit" exact element={<Profit />} />
