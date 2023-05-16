@@ -6,21 +6,31 @@ const MyDoughnut = (props) => {
   const label = props.data.map((l) => l.category);
   const value = props.data.map((l) => l.value);
   const options = {
-    
     plugins: {
       legend: {
         display: false,
       },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const dataIndex = context.dataIndex;
+            const value = context.chart.data.datasets[0].data[dataIndex];
+            return `${value}%`;
+          },
+          title:()=>null,
+        },
+        displayColors: false,
+      },
     },
   };
-
   const data = {
     labels: label,
     datasets: [
       {
         data: value,
-        backgroundColor: "rgba(0,0,0,0.1)",
-        hoverBackgroundColor: props.background,
+        backgroundColor: props.hover.map((hovered) =>
+            hovered ?  props.background:"rgba(0, 0, 0, 0.1)"
+        ),        hoverBackgroundColor: props.background,
         borderWidth: 1,
         borderColor: "rgba(255, 255, 255, 0.7)",
       },
