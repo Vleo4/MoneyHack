@@ -1,4 +1,16 @@
 .profit {
   height: 100vh;
   background: #0e130f;
+  width: 100%;
 }
+
+.profit h3 {
+  font-family: var(--font-mont);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+
+}
+

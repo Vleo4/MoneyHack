@@ -5,6 +5,8 @@
   background-position: top;
   background-position-y: 150px;
   padding-top: 60px;
+  
+  overflow: hidden;
 }
 
 .main-header {
