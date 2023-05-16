@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
@@ -68,6 +70,7 @@ class Credit(models.Model):
     from_where = models.CharField(max_length=255)
     user = models.ForeignKey(FinanceUser, on_delete=models.CASCADE)
     is_closed = models.BooleanField(default=False)
+    loss = models.OneToOneField('Loss', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f'{self.percentage}% credit from {self.from_where}'
@@ -110,10 +113,16 @@ class Deposit(models.Model):
     from_where = models.CharField(max_length=255)
     user = models.ForeignKey(FinanceUser, on_delete=models.CASCADE)
     is_closed = models.BooleanField(default=False)
+    profit = models.OneToOneField('Profit', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f'{self.percentage}% deposit to {self.from_where}'
 
     def max_value(self):
         period = (self.end_time.year - self.start_time.year)
+        return self.value * pow((1 + self.percentage / 100), period)
+
+    def current_value(self):
+        current_time = timezone.now()
+        period = (current_time.year - self.start_time.year)
         return self.value * pow((1 + self.percentage / 100), period)

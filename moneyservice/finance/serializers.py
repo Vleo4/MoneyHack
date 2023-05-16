@@ -36,7 +36,7 @@ class CreditSerializer(serializers.ModelSerializer):
 class CreateCreditSerializer(serializers.ModelSerializer):
     class Meta:
         model = Credit
-        fields = ['id', 'note', 'percentage', 'start_time', 'end_time', 'value', 'type_of_credit', 'from_where', 'user']
+        fields = ['id', 'note', 'percentage', 'start_time', 'end_time', 'value', 'type_of_credit', 'from_where']
 
 
 class CloseCreditSerializer(serializers.ModelSerializer):
@@ -47,6 +47,23 @@ class CloseCreditSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.is_closed = not instance.is_closed
         instance.save()
+
+        if instance.is_closed:
+            loss = Loss.objects.create(
+                note="credit",
+                value=instance.max_value() - instance.value,
+                category="credit",
+                time=timezone.now(),
+                user=instance.user
+            )
+            instance.loss = loss
+            instance.save()
+        else:
+            if instance.loss:
+                instance.loss.delete()
+                instance.loss = None
+                instance.save()
+
         return instance
 
 
@@ -62,14 +79,12 @@ class DepositSerializer(serializers.ModelSerializer):
         return obj.max_value()
 
     def get_current_value(self, obj):
-        current_time = datetime.now()
-        period = (current_time.year - obj.start_time.year)
-        return obj.value * pow((1 + obj.percentage / 100), period)
+        return obj.current_value()
 
 class CreateDepositSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deposit
-        fields = ['note', 'percentage', 'start_time', 'end_time', 'value', 'type_of_credit', 'from_where', ]
+        fields = ['note', 'percentage', 'start_time', 'end_time', 'value', 'type_of_credit', 'from_where']
 
 
 class CloseDepositSerializer(serializers.ModelSerializer):
@@ -80,12 +95,29 @@ class CloseDepositSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.is_closed = not instance.is_closed
         instance.save()
+
+        if instance.is_closed:
+            profit = Profit.objects.create(
+                note="deposit",
+                value=instance.current_value() - instance.value,
+                category="credit",
+                time=timezone.now(),
+                user=instance.user
+            )
+            instance.profit = profit
+            instance.save()
+        else:
+            if instance.profit:
+                instance.profit.delete()
+                instance.profit = None
+                instance.save()
+
         return instance
 
 class CreateProfitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profit
-        fields = ['note', 'value', 'category', 'time', ]
+        fields = ['note', 'value', 'category', 'time' ]
 
 class ProfitSerializer(serializers.ModelSerializer):
     class Meta:
@@ -95,7 +127,7 @@ class ProfitSerializer(serializers.ModelSerializer):
 class CreateLossSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loss
-        fields = ['note', 'value', 'category', 'time', ]
+        fields = ['note', 'value', 'category', 'time']
 
 class LossSerializer(serializers.ModelSerializer):
     class Meta:
