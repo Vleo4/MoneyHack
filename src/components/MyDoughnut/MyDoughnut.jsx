@@ -15,7 +15,7 @@ const MyDoughnut = (props) => {
           label: (context) => {
             const dataIndex = context.dataIndex;
             const value = context.chart.data.datasets[0].data[dataIndex];
-            return `${value}%`;
+            return `${value} ГРН`;
           },
           title:()=>null,
         },
