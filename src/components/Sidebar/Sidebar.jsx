@@ -35,7 +35,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`sidebar ${isOpen ? "open" : ""}`}
+      className={`sidebar ${isOpen && "open"}`}
       onClick={handleSidebarClick}
       ref={sidebarRef}
     >

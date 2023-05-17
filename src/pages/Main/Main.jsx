@@ -126,6 +126,8 @@ const Main = () => {
     const hoverArray = profitData.map(()=>false);
     setHover2(hoverArray);
   },[])
+
+ 
   return (
     <div className="main">
       <div className="main-header">

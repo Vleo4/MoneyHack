@@ -4,6 +4,7 @@
   position: fixed;
   justify-content: flex-end;
   align-items: center;
+  z-index: 999;
 }
 
 .burger-button {
@@ -34,7 +35,7 @@
 }
 
 .burgermenu {
-  background: #0c0f0c;
+  background: #0F0F0F;
   width: 220px;
   display: flex;
   flex-direction: column;
@@ -78,7 +79,7 @@
 }
 
 .burgermenu-wrapper span {
-  background: rgba(35, 209, 84, 0.3);
+  background: rgba(215, 215, 215, 0.3);
   height: 1px;
   width: 100%;
   margin-top: 18px;
@@ -91,8 +92,8 @@
   align-items: center;
   gap: 30px;
   padding: 0 25px 0 12px;
-  background: #0e130f;
-  border: 1px solid rgba(26, 161, 64, 0.3);
+  background: #0F0F0F;
+  border: 1px solid rgba(215, 215, 215, 0.3);
   border-radius: 12px;
   height: 48px;
   width: 170px;
@@ -100,5 +101,5 @@
 }
 
 .burgermenu-item :hover {
-  background: rgba(91, 209, 35, 0.3);
+  background: rgba(215, 215, 215, 0.3);
 }

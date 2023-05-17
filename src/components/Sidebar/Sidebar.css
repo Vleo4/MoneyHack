@@ -1,6 +1,6 @@
 .sidebar {
   position: relative;
-  background: #0c0f0c;
+  background: #0F0F0F;
   display: flex;
   flex-direction: column;
   width: 100px;
@@ -49,7 +49,7 @@
 }
 
 .sidebar-wrapper span {
-  background: rgba(35, 209, 84, 0.3);
+  background: rgba(215, 215, 215, 0.3);
   height: 1px;
   width: 100%;
   margin-top: 18px;
@@ -63,8 +63,8 @@
   align-items: center;
   gap: 30px;
   padding: 0 25px 0 12px;
-  background: #0e130f;
-  border: 1px solid rgba(26, 161, 64, 0.3);
+  background: #0F0F0F;
+  border: 1px solid rgba(215, 215, 215, 0.3);
   border-radius: 12px;
   height: 48px;
   width: 48px;
@@ -74,7 +74,7 @@
 
 .sidebar-item:hover {
   transition: 0.5s ease;
-  background: rgba(91, 209, 35, 0.3);
+  background: rgba(215, 215, 215, 0.3);
 }
 
 .sidebar.open {
@@ -90,6 +90,7 @@
   width: 170px;
   transition: width 0.5s ease;
 }
+
 
 @keyframes fadeIn {
   from {

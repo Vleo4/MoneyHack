@@ -7,6 +7,42 @@
   flex-direction: column;
 }
 
+.profit.loss {
+  background: #130e0e;
+  .profit-container {
+    background: #0f0c0c
+      radial-gradient(
+        94.36% 181.75% at 72.99% 50.07%,
+        rgba(95, 0, 0, 0.7) 0%,
+        rgba(12, 15, 12, 0) 56.32%
+      )
+      no-repeat;
+  }
+  .profit-container_buttons {
+    border-bottom: 1px solid rgba(209, 35, 35, 0.3);
+  }
+  .profit-container_buttons-item {
+    border-right: 1px solid rgba(209, 35, 35, 0.3);
+  }
+  .profit-container_buttons-item.active {
+    background: rgba(161, 26, 26, 0.3);
+  }
+  .block {
+    border: 1px solid rgba(161, 26, 26, 0.3);
+  }
+  .block p:first-child {
+    color: #d12323;
+  }
+  .block input[type="text"]:first-child {
+    border-bottom: 1px solid #d12323;
+
+    color: #d12323;
+  }
+  .block input[type="text"]:first-child::-webkit-input-placeholder {
+    color: rgba(161, 26, 26, 0.3);
+  }
+}
+
 .profit-wrapper {
   padding: 0 20px;
   display: flex;
@@ -33,13 +69,15 @@
   border-radius: 24px;
   max-width: 1392px;
   width: calc(100% - 100px);
-  height: 705px;
+  min-height: 705px;
 
-  background: #0c0f0c radial-gradient(
-          94.36% 181.75% at 72.99% 50.07%,
-          rgba(0, 95, 26, 0.7) 0%,
-          rgba(12, 15, 12, 0) 56.32%
-  ) no-repeat;
+  background: #0c0f0c
+    radial-gradient(
+      94.36% 181.75% at 72.99% 50.07%,
+      rgba(0, 95, 26, 0.7) 0%,
+      rgba(12, 15, 12, 0) 56.32%
+    )
+    no-repeat;
 }
 
 .profit-container_buttons {
@@ -103,7 +141,7 @@
   color: #ffffff;
 
   background: rgba(12, 15, 12, 0.1);
-  border: 1px solid rgba(35, 209, 84, 0.3);
+  border: 1px solid #ffffff;
   border-radius: 12px;
 
   align-self: flex-end;
@@ -282,6 +320,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
+.addIcon {
+  justify-self: flex-end;
+  cursor: pointer;
+}
+.spend-block2 {
+  max-width: 1392px;
+  width: 100%;
+  position: relative;
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.date-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  max-width: 400px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profit-wrapper h3 {
+  font-family: var(--font-mont);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  color: #ffffff;
+}
+
 @media screen and (max-width: 1280px) {
   .profit-container-labels button {
     padding: 0;
@@ -295,6 +365,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-width: 1024px) {
+  .spend-block2 {
+    background: linear-gradient(
+        360deg,
+        rgba(12, 15, 12, 0) 0%,
+        rgba(0, 95, 26, 0.5) 30.39%,
+        rgba(12, 15, 12, 0) 80.02%
+      ),
+      #0c0f0c;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+  }
   .block {
     height: 100%;
     padding: 12px 24px;
@@ -311,9 +393,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-width: 768px) {
-  .profit-wrapper h2 {
-    width: 100%;
-    text-align: start;
+  .profit-wrapper h3 {
+    text-align: center;
   }
   .profit-container {
     width: 100%;
@@ -389,30 +470,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
     overflow-y: hidden;
   }
-}
-.addIcon {
-  justify-self: flex-end;
-  cursor: pointer;
-}
-.spend-block2{
-  max-width: 1392px;
-  width: 100%;
-  position: relative;
-  padding: 26px 28px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-@media screen and (max-width: 768px) {
-  .spend-block2 {
-    background: linear-gradient(
-            360deg,
-            rgba(12, 15, 12, 0) 0%,
-            rgba(0, 95, 26, 0.5) 30.39%,
-            rgba(12, 15, 12, 0) 80.02%
-    ),
-    #0c0f0c;
+  .date-wrapper {
     flex-direction: column;
-    gap: 50px;
+    gap: 10px;
   }
 }
