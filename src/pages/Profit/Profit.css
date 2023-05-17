@@ -255,6 +255,7 @@
   color: #23d154;
 }
 
+.block input[type="date"],
 .block input[type="text"] {
   all: unset;
   border-bottom: 1px solid #ffffff;
@@ -265,6 +266,15 @@
   font-size: 16px;
   line-height: 16px;
   color: #ffffff;
+}
+
+.block input[type="date"] {
+  max-width: 150px;
+}
+
+.block input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invert the color to white */
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1280px) {
@@ -372,7 +382,7 @@
     overflow-y: hidden;
   }
 }
-.addIcon{
+.addIcon {
   justify-self: flex-end;
   cursor: pointer;
 }
