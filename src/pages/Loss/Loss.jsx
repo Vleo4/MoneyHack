@@ -5,6 +5,7 @@ import "../Main/Main.css";
 import { deleteLoss, editLoss, getLoss, newLoss } from "../../api/api.js";
 import { Loader, MyDoughnut } from "../../components";
 import { isAuth } from "../../api/AuthContext";
+import { useResizer2 } from "../../constants/isMobile";
 const Loss = () => {
   const [hover, setHover] = useState([]);
   const handleHover = (index, bool) => {
@@ -215,13 +216,16 @@ const Loss = () => {
   ];
 
   const isLoss = location.pathname === "/loss";
+  const isMobile = useResizer2();
   return (
     <div className={`profit ${isLoss && "loss"}`}>
       <div className="profit-wrapper">
         <h2>Витрати</h2>
         <div
           className="profit-container"
-          style={{ height: !historyLink ? "100%" : "705px" }}
+          style={{
+            height: !historyLink ? "100%" : isMobile ? "100%" : "705px",
+          }}
         >
           <div className="profit-container_buttons">
             <div
