@@ -35,7 +35,7 @@
 }
 
 .burgermenu {
-  background: #0F0F0F;
+  background: #0f0f0f;
   width: 220px;
   display: flex;
   flex-direction: column;
@@ -47,6 +47,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  border-right: 1px solid rgba(215, 215, 215, 0.3);
 }
 
 .burgermenu-wrapper {
@@ -92,7 +93,7 @@
   align-items: center;
   gap: 30px;
   padding: 0 25px 0 12px;
-  background: #0F0F0F;
+  background: #0f0f0f;
   border: 1px solid rgba(215, 215, 215, 0.3);
   border-radius: 12px;
   height: 48px;
