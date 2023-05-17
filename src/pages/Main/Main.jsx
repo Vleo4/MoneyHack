@@ -169,7 +169,7 @@ const Main = () => {
                      onMouseLeave={()=>{handleHover(index,false)}}
                      key={spend.category}>
                   <p>{spend.category}</p>
-                  <p>{spend.value}%</p>
+                  <p>{spend.value} ГРН</p>
                 </div>
               ))}
             </div>
@@ -188,7 +188,7 @@ const Main = () => {
                      onMouseOver={()=>{handleHover2(index,true)}}
                      key={profit.category}>
                   <p>{profit.category}</p>
-                  <p>{profit.value}%</p>
+                  <p>{profit.value} ГРН</p>
                 </div>
               ))}
             </div>
