@@ -1,9 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./BurgerMenu.css";
 import { images } from "../../constants";
 import { useState } from "react";
+import { clearStorages } from "../../api/tokenStorage";
 
 const BurgerMenu = () => {
+  const navigate = useNavigate();
+  const logOut = () => {
+    clearStorages();
+    navigate("/");
+  };
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const handleToggleMenu = () => {
@@ -24,7 +30,7 @@ const BurgerMenu = () => {
           <div className="burgermenu-wrapper">
             <div className="burgermenu-profile">
               <img src={images.Profile} alt="Profile" />
-              <p>Username</p>
+              <p>Профіль</p>
             </div>
             <span></span>
             <Link
@@ -73,7 +79,13 @@ const BurgerMenu = () => {
               <p>Звіти</p>
             </Link>
           </div>
-          <div className="burgermenu-item" onClick={handleToggleMenu}>
+          <div
+            className="burgermenu-item"
+            onClick={() => {
+              handleToggleMenu();
+              logOut();
+            }}
+          >
             <img src={images.Logout} alt="Logout" />
             <p>Вийти</p>
           </div>

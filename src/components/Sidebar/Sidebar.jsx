@@ -1,9 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { images } from "../../constants";
 import "./Sidebar.css";
 import { useRef, useState, useEffect } from "react";
+import { clearStorages } from "../../api/tokenStorage";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const logOut = () => {
+    clearStorages();
+    navigate("/");
+  };
+
   const sidebarRef = useRef(null); // Посилання на елемент сайдбару
 
   const [isOpen, setIsOpen] = useState(false);
@@ -11,8 +18,6 @@ const Sidebar = () => {
   const handleSidebarClick = () => {
     setIsOpen(true);
   };
-
-  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -28,10 +33,7 @@ const Sidebar = () => {
     };
   }, []);
 
-  
-
   return (
-    
     <div
       className={`sidebar ${isOpen ? "open" : ""}`}
       onClick={handleSidebarClick}
@@ -40,7 +42,7 @@ const Sidebar = () => {
       <div className="sidebar-wrapper">
         <div className="sidebar-profile">
           <img src={images.Profile} alt="Profile" />
-          <p>Username</p>
+          <p>Профіль</p>
         </div>
         <span></span>
         <Link
@@ -80,7 +82,7 @@ const Sidebar = () => {
           <p>Звіти</p>
         </Link>
       </div>
-      <div className="sidebar-item">
+      <div className="sidebar-item" onClick={logOut}>
         <img src={images.Logout} alt="Logout" />
         <p>Вийти</p>
       </div>
