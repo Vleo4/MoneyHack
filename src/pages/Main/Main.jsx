@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 
 
 const Main = () => {
-  localStorage.clear();
+
   const [hover, setHover] = useState([]);
   const [hover2, setHover2] = useState([]);
   const handleHover = (index, bool) => {
@@ -150,7 +150,7 @@ const Main = () => {
               користувачі зможуть контролювати свої фінанси з легкістю та
               забезпечити стабільність своєї фінансової ситуації.
             </p>
-            <Link to="/" className="try-now">
+            <Link to="/login" className="try-now">
               Спробувати зараз!
             </Link>
           </div>

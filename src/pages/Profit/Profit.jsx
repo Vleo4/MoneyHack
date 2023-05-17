@@ -3,6 +3,16 @@ import images from "../../constants/images";
 import "./Profit.css";
 
 const Profit = () => {
+  const digits = /^[0-9]*$/;
+  const [number, setNumber] = useState(null);
+
+  const handleNumber = (event) => {
+    if (digits.test(event.target.value) && event.target.value.length <= 12) {
+      setNumber(event.target.value);
+    }
+  };
+
+  const [historyLink, setHistoryLink] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
 
   const handleEditClick = () => {
@@ -26,10 +36,24 @@ const Profit = () => {
         <h2>Профіт</h2>
         <div className="profit-container">
           <div className="profit-container_buttons">
-            <div className="profit-container_buttons-item">
+            <div
+              className={`profit-container_buttons-item ${
+                historyLink ? "active" : ""
+              }`}
+              onClick={() => {
+                setHistoryLink(true);
+              }}
+            >
               <p>Історія</p>
             </div>
-            <div className="profit-container_buttons-item">
+            <div
+              className={`profit-container_buttons-item ${
+                !historyLink ? "active" : ""
+              }`}
+              onClick={() => {
+                setHistoryLink(false);
+              }}
+            >
               <p>Графік</p>
             </div>
           </div>
@@ -57,7 +81,14 @@ const Profit = () => {
             <div className="block">
               {isEdit ? (
                 <>
-                  <input type="number" placeholder="ГРН" />
+                  <input
+                    type="text"
+                    placeholder="ГРН"
+                    value={number}
+                    onChange={(e) => {
+                      handleNumber(e);
+                    }}
+                  />
                   <div className="category">
                     <button onClick={toggleDropdown}>
                       {selectedOption}{" "}
