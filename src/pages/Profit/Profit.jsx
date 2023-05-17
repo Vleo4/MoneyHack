@@ -10,6 +10,7 @@ import {
 } from "../../api/api.js";
 import { Loader, MyDoughnut } from "../../components";
 import { isAuth } from "../../api/AuthContext";
+import { useResizer2 } from "../../constants/isMobile";
 const Profit = () => {
   const [hover, setHover] = useState([]);
   const handleHover = (index, bool) => {
@@ -229,13 +230,18 @@ const Profit = () => {
       category: "Інше",
     },
   ];
+
+  const isMobile = useResizer2();
+
   return (
     <div className="profit">
       <div className="profit-wrapper">
         <h2>Профіт</h2>
         <div
           className="profit-container"
-          style={{ height: !historyLink ? "100%" : "705px" }}
+          style={{
+            height: !historyLink ? "100%" : isMobile ? "100%" : "705px",
+          }}
         >
           <div className="profit-container_buttons">
             <div
