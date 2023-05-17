@@ -8,8 +8,15 @@ import {
   newProfit,
 } from "../../api/api.js";
 import { Loader } from "../../components";
+import { isAuth } from "../../api/AuthContext";
 
 const Profit = () => {
+  useEffect(() => {
+    if (!isAuth()) {
+      window.location.href = "/login";
+    }
+  }, [isAuth()]);
+
   const [data, setData] = useState([]);
   const [date, setDate] = useState();
   const [note, setNote] = useState();
@@ -145,169 +152,187 @@ const Profit = () => {
               <p>Графік</p>
             </div>
           </div>
-          <div className="profit-container-labels">
-            <p onClick={() => handleSortClick("Сума")}>
-              Сума <img src={images.Arrows} alt="Arrows" />
-            </p>
-            <p onClick={() => handleSortClick("Категорія")}>
-              Категорія <img src={images.Arrows} alt="Arrows" />
-            </p>
-            <p onClick={() => handleSortClick("Нотатка")}>
-              Нотатка <img src={images.Arrows} alt="Arrows" />
-            </p>
-            <p onClick={() => handleSortClick("Дата")}>
-              Дата <img src={images.Arrows} alt="Arrows" />
-            </p>
-            <button
-              onClick={() => {
-                handleAdd();
-              }}
-            >
-              <p>Додати</p>
-              <img src={images.Add} alt="Add" />
-            </button>
-          </div>
-          <div className="profit-container-blocks">
-            {isLoading ? (
-              <div className="loading-screen">
-                <Loader />
+          {!historyLink ? (
+            <div className="">graphic</div>
+          ) : (
+            <>
+              <div className="profit-container-labels">
+                <p onClick={() => handleSortClick("Сума")}>
+                  Сума <img src={images.Arrows} alt="Arrows" />
+                </p>
+                <p onClick={() => handleSortClick("Категорія")}>
+                  Категорія <img src={images.Arrows} alt="Arrows" />
+                </p>
+                <p onClick={() => handleSortClick("Нотатка")}>
+                  Нотатка <img src={images.Arrows} alt="Arrows" />
+                </p>
+                <p onClick={() => handleSortClick("Дата")}>
+                  Дата <img src={images.Arrows} alt="Arrows" />
+                </p>
+                <button
+                  onClick={() => {
+                    handleAdd();
+                  }}
+                >
+                  <p>Додати</p>
+                  <img src={images.Add} alt="Add" />
+                </button>
               </div>
-            ) : (
-              <>
-                {/* --------------- COMPONENT -------------------- */}
-                {isAdd && (
-                  <div className="block">
-                    <>
-                      <input
-                        type="text"
-                        placeholder="ГРН"
-                        value={money}
-                        onChange={(e) => {
-                          handleNumber(e);
-                        }}
-                      />
-                      <div className="category">
-                        <button onClick={toggleDropdown}>
-                          {selectedOption}{" "}
-                          <img src={images.ArrowDown} alt="ArrowDown" />
-                        </button>
-                        <div
-                          className={`category-dropdown ${
-                            isDropdownOpen ? "open" : ""
-                          }`}
-                        >
-                          <h6 onClick={() => handleOptionClick("Інше")}>
-                            Інше
-                          </h6>
-                          <h6
-                            onClick={() => handleOptionClick("Заробітна плата")}
-                          >
-                            Заробітна плата
-                          </h6>
-                          <h6
-                            onClick={() => handleOptionClick("Бізнес-прибуток")}
-                          >
-                            Бізнес-прибуток
-                          </h6>
-                          <h6
-                            onClick={() =>
-                              handleOptionClick("Інвестиційний дохід")
-                            }
-                          >
-                            Інвестиційний дохід
-                          </h6>
-                          <h6
-                            onClick={() =>
-                              handleOptionClick("Капітальний дохід")
-                            }
-                          >
-                            Капітальний дохід
-                          </h6>
-                          <h6 onClick={() => handleOptionClick("Премії")}>
-                            Премії
-                          </h6>
-                          <h6
-                            onClick={() => handleOptionClick("Продаж товарів")}
-                          >
-                            Продаж товарів
-                          </h6>
-                          <h6
-                            onClick={() =>
-                              handleOptionClick("Авторські винагороди")
-                            }
-                          >
-                            Авторські винагороди
-                          </h6>
-                        </div>
-                      </div>
-                      <input
-                        type="text"
-                        value={note}
-                        onChange={(e) => {
-                          handleNote(e);
-                        }}
-                      />
-                      <input
-                        type="date"
-                        value={date}
-                        onChange={(e) => {
-                          setDate(e.target.value);
-                        }}
-                      />
-                      <img
-                        onClick={() => {
-                          if (isEdit) {
-                            editProfit(note, money, selectedOption, date, id);
-                          } else {
-                            newProfit(note, money, selectedOption, date);
-                          }
-                          handleAdd();
-                          setTimeout(getData, 500);
-                        }}
-                        className="addIcon"
-                        src={isEdit ? images.Check : images.Add}
-                        alt="Add"
-                      />
-                    </>
+              <div className="profit-container-blocks">
+                {isLoading ? (
+                  <div className="loading-screen">
+                    <Loader />
                   </div>
-                )}
-                {data.map((d, index) => {
-                  return (
-                    <div key={index} className="block">
-                      <p>{parseInt(d.value)} ГРН</p>
-                      <p>{d.category}</p>
-                      <p>{d.note}</p>
-                      <p>
-                        {new Date(d.time).toLocaleDateString("uk-UA", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
-                        })}
-                      </p>
-                      <div className="buttons">
-                        <img
-                          src={images.Edit}
-                          alt="Edit"
-                          onClick={() => {
-                            handleAdd(index);
-                            setId(d.id);
-                          }}
-                        />
-                        <img
-                          src={images.Delete}
-                          onClick={() => {
-                            deleteProfit(d.id).then();
-                            setTimeout(getData, 500);
-                          }}
-                          alt="Delete"
-                        />
+                ) : (
+                  <>
+                    {/* --------------- COMPONENT -------------------- */}
+                    {isAdd && (
+                      <div className="block">
+                        <>
+                          <input
+                            type="text"
+                            placeholder="ГРН"
+                            value={money}
+                            onChange={(e) => {
+                              handleNumber(e);
+                            }}
+                          />
+                          <div className="category">
+                            <button onClick={toggleDropdown}>
+                              {selectedOption}{" "}
+                              <img src={images.ArrowDown} alt="ArrowDown" />
+                            </button>
+                            <div
+                              className={`category-dropdown ${
+                                isDropdownOpen ? "open" : ""
+                              }`}
+                            >
+                              <h6 onClick={() => handleOptionClick("Інше")}>
+                                Інше
+                              </h6>
+                              <h6
+                                onClick={() =>
+                                  handleOptionClick("Заробітна плата")
+                                }
+                              >
+                                Заробітна плата
+                              </h6>
+                              <h6
+                                onClick={() =>
+                                  handleOptionClick("Бізнес-прибуток")
+                                }
+                              >
+                                Бізнес-прибуток
+                              </h6>
+                              <h6
+                                onClick={() =>
+                                  handleOptionClick("Інвестиційний дохід")
+                                }
+                              >
+                                Інвестиційний дохід
+                              </h6>
+                              <h6
+                                onClick={() =>
+                                  handleOptionClick("Капітальний дохід")
+                                }
+                              >
+                                Капітальний дохід
+                              </h6>
+                              <h6 onClick={() => handleOptionClick("Премії")}>
+                                Премії
+                              </h6>
+                              <h6
+                                onClick={() =>
+                                  handleOptionClick("Продаж товарів")
+                                }
+                              >
+                                Продаж товарів
+                              </h6>
+                              <h6
+                                onClick={() =>
+                                  handleOptionClick("Авторські винагороди")
+                                }
+                              >
+                                Авторські винагороди
+                              </h6>
+                            </div>
+                          </div>
+                          <input
+                            type="text"
+                            value={note}
+                            onChange={(e) => {
+                              handleNote(e);
+                            }}
+                          />
+                          <input
+                            type="date"
+                            value={date}
+                            onChange={(e) => {
+                              setDate(e.target.value);
+                            }}
+                          />
+                          <img
+                            onClick={() => {
+                              if (isEdit) {
+                                editProfit(
+                                  note,
+                                  money,
+                                  selectedOption,
+                                  date,
+                                  id
+                                );
+                              } else {
+                                newProfit(note, money, selectedOption, date);
+                              }
+                              handleAdd();
+                              setTimeout(getData, 500);
+                            }}
+                            className="addIcon"
+                            src={isEdit ? images.Check : images.Add}
+                            alt="Add"
+                          />
+                        </>
                       </div>
-                    </div>
-                  );
-                })}
-              </>
-            )}
-          </div>
+                    )}
+                    {data.map((d, index) => {
+                      return (
+                        <div key={index} className="block">
+                          <p>{parseInt(d.value)} ГРН</p>
+                          <p>{d.category}</p>
+                          <p>{d.note}</p>
+                          <p>
+                            {new Date(d.time).toLocaleDateString("uk-UA", {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </p>
+                          <div className="buttons">
+                            <img
+                              src={images.Edit}
+                              alt="Edit"
+                              onClick={() => {
+                                handleAdd(index);
+                                setId(d.id);
+                              }}
+                            />
+                            <img
+                              src={images.Delete}
+                              onClick={() => {
+                                deleteProfit(d.id).then();
+                                setTimeout(getData, 500);
+                              }}
+                              alt="Delete"
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
