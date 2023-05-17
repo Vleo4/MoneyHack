@@ -30,7 +30,8 @@ const MyDoughnut = (props) => {
         data: value,
         backgroundColor: props.hover.map((hovered) =>
             hovered ?  props.background:"rgba(0, 0, 0, 0.1)"
-        ),        hoverBackgroundColor: props.background,
+        ),
+        hoverBackgroundColor: props.background,
         borderWidth: 1,
         borderColor: "rgba(255, 255, 255, 0.7)",
       },

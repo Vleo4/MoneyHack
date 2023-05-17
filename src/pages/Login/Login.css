@@ -98,7 +98,7 @@
   width: 100%;
   transition: border-bottom 0.5s ease-in-out;
   background: #0C0F0C;
-  border: 1px solid #9c15be;
+  border: 1px solid rgba(35, 209, 84, 1);
   border-radius: 12px;
   align-items: center;
   height: 40px;
@@ -145,6 +145,7 @@
   background: #23D154;
   border-radius: 12px;
   justify-content: center;
+  cursor: pointer;
 }
 .login__button span {
   cursor: pointer;
@@ -252,8 +253,10 @@
   height: 60px;
   width: 100%;
   margin-top: 15px;
+  justify-content: center;
 }
 .login__alert span {
+  word-break: break-word;
   margin-left: 5%;
   font-family: var(--font-mont);
   font-style: normal;
@@ -263,8 +266,10 @@
   display: flex;
   align-items: center;
   color: rgba(255, 255, 255, 0.7);
-  white-space: nowrap;
+  white-space: pre-wrap;
   flex: 1 2;
+  justify-content: center;
+  text-align: center;
 }
 @media screen and (max-width: 768px) {
   .login__alert span {
@@ -283,9 +288,41 @@
 }
 .google__button-login {
   margin-bottom: 40px;
+  margin-top: 12px;
 }
 .login__footer {
   height: 10vh;
   width: 100%;
   display: block;
+}
+
+::-webkit-input-placeholder {
+  color: rgba(35, 209, 84, 0.3);}
+
+::-moz-placeholder { /* Firefox 19+ */
+  color: rgba(35, 209, 84, 0.3);}
+
+:-ms-input-placeholder {
+  color: rgba(35, 209, 84, 0.3);}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: rgba(35, 209, 84, 0.3);}
+.loading-screen {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.MENTAL{
+  position: absolute;
+  margin-left: 5%;
+  top: 39px;
+  font-family: var(--font-mont);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
 }

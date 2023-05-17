@@ -7,9 +7,11 @@ import { Link } from "react-router-dom";
 import {onFailure, onSuccess, registerApi} from "../../api/api.js";
 import { isAuth } from "../../api/AuthContext.jsx";
 import {GoogleLogin, GoogleOAuthProvider} from "@react-oauth/google";
+import {Loader} from "../../components/index.js";
 
 const Register = () => {
   const isMobile = useResizer();
+  const [loading,setLoading]=useState(false);
   const [button, setButton] = useState(false);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState(null);
@@ -55,15 +57,17 @@ const Register = () => {
       setAlertTxt("Password is incorrect");
       setAlert(true);
     } else {
+      setLoading(true);
       const data = await registerApi(login, email, pass);
       if (data.data.access) {
         saveToLocalStorage("ACCESS_TOKEN", data.data.access);
         saveToLocalStorage("REFRESH_TOKEN", data.data.refresh);
-        window.location.href = "/";
+        window.location.href = "/profit";
       } else {
         setAlertTxt("Username already exists");
         setAlert(true);
       }
+      setLoading(false);
     }
   };
 
@@ -81,8 +85,15 @@ const Register = () => {
   }, [isAuth()]);
   return (
     <div className="login">
+      <div className="MENTAL">MONEYHACK</div>
       <div className="login__login">
         <div className="login__block">
+          {loading?
+              <div className="loading-screen">
+                <Loader/>
+              </div>
+              :
+              <>
           <div className="login__block__mini">
             <div className="login__text__welcome">Створити аккаунт!</div>
             {alert && (
@@ -97,7 +108,7 @@ const Register = () => {
                 />
               </div>
             )}
-            <div className="login__text">Name</div>
+            <div className="login__text">Ім'я користувача</div>
             <div
               className={
                 isActiveLogin
@@ -118,10 +129,10 @@ const Register = () => {
                   setIsActiveLogin(false);
                 }}
                 type="text"
-                placeholder=""
+                placeholder="Username"
               />
             </div>
-            <div className="login__text">Email</div>
+            <div className="login__text">Електронна пошта</div>
             <div
               className={
                 isActiveEmail
@@ -142,10 +153,10 @@ const Register = () => {
                   setIsActiveEmail(false);
                 }}
                 type="text"
-                placeholder=""
+                placeholder="user@email.com"
               />
             </div>
-            <div className="login__text">Password</div>
+            <div className="login__text">Пароль</div>
             <div
               className={
                 isActivePass
@@ -166,7 +177,7 @@ const Register = () => {
                   setIsActivePass(false);
                 }}
                 type={eye ? "text" : "password"}
-                placeholder=""
+                placeholder="Потрібно 6+ символів"
               />
               <img
                 src={eye ? images.OpenEye : images.CloseEye}
@@ -208,6 +219,8 @@ const Register = () => {
               </GoogleOAuthProvider>
             </div>
           </div>
+              </>
+          }
         </div>
       </div>
       {alert && <span className="login__footer"></span>}

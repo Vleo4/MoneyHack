@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import {loginApi, onFailure, onSuccess} from "../../api/api.js";
 import { isAuth } from "../../api/AuthContext.jsx";
+import {Loader} from "../../components/index.js";
 
 const Login = () => {
   const isMobile = useResizer();
@@ -19,7 +20,7 @@ const Login = () => {
   const [isActivePass, setIsActivePass] = useState(true);
   const [eye, setEye] = useState(false);
   const [alert, setAlert] = useState(false);
-
+  const [loading,setLoading]=useState(false);
   const handleLoginChange = (event) => {
     setLogin(event.target.value);
   };
@@ -35,34 +36,44 @@ const Login = () => {
   }, [login, pass]);
   React.useEffect(() => {
     if (isAuth()) {
-      window.location.href = "/";
+      window.location.href = "/profit";
     }
   }, [isAuth()]);
 
   const loginButton = async () => {
     if(login&&pass) {
+      setLoading(true);
       setAlert(false);
       try {
         const {access, refresh} = await loginApi(login, pass);
         saveToLocalStorage('ACCESS_TOKEN', access);
         saveToLocalStorage('REFRESH_TOKEN', refresh);
-        window.location.href = "/";
+        window.location.href = "/profit";
       } catch (err) {
         setAlert(true);
       }
     }
+    setLoading(false);
   };
 
   return (
     <div className="login">
+      <div className="MENTAL">MONEYHACK</div>
       <div className="login__login">
         <div className="login__block">
           <div className="login__block__mini">
+            {loading?
+                <div className="loading-screen">
+                <Loader/>
+                </div>
+                :
+                <>
             <div className="login__text__welcome">ЛАСКАВО ПРОСИМО</div>
             <div className="login__text__sign">Увійдіть у свій обліковий запис</div>
             {alert && (
               <div className="login__alert">
-                <span>Incorrect Name or Password.</span>
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
+                <span>Неправильне ім'я користувача або пароль.</span>
                 <img
                   src={images.CloseAlert}
                   onClick={() => {setAlert(false);}}
@@ -70,6 +81,7 @@ const Login = () => {
                 />
               </div>
             )}
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
             <div className="login__text">Ім'я користувача</div>
             <div
               className={
@@ -89,7 +101,7 @@ const Login = () => {
                   setIsActiveLogin(false);
                 }}
                 type="text"
-                placeholder=""
+                placeholder="Username"
               />
               <img src={images.UserIcon} />
             </div>
@@ -112,7 +124,7 @@ const Login = () => {
                   setIsActivePass(false);
                 }}
                 type={eye ? "text" : "password"}
-                placeholder=""
+                placeholder="Пароль"
               />
               <img
                 src={eye ? images.OpenEye : images.CloseEye}
@@ -140,7 +152,7 @@ const Login = () => {
               <span className="login__or__right"></span>
             </div>
             <div className="google__button-login">
-              <GoogleOAuthProvider clientId="298908062102-2p5834iihc65s1qtua2oskkff673u8cn.apps.googleusercontent.com">
+              <GoogleOAuthProvider clientId="488276422870-q1thm6trrih9sj4l9k4e22785rt47muu.apps.googleusercontent.com">
                 <GoogleLogin
                     size="large"
                     onSuccess={onSuccess}
@@ -152,6 +164,8 @@ const Login = () => {
                 />
               </GoogleOAuthProvider>
             </div>
+                </>
+            }
           </div>
         </div>
       </div>

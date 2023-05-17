@@ -176,7 +176,7 @@ const Main = () => {
             </div>
           </div>
           <div className="spend-block-piechart">
-            <MyDoughnut hover={hover} data={spendData} background={"rgba(0, 95, 26, 0.7)"}/>
+            <MyDoughnut hover={hover} data={spendData} background={"rgba(0, 125, 46, 1)"}/>
           </div>
         </div>
         <div className="profit-block">
@@ -195,7 +195,7 @@ const Main = () => {
             </div>
           </div>
           <div className="profit-block-piechart">
-            <MyDoughnut hover={hover2} data={profitData} background={"rgba(42, 95, 0, 0.7)"}/>
+            <MyDoughnut hover={hover2} data={profitData} background={"rgba(55, 120, 0, 1)"}/>
           </div>
         </div>
       </div>
