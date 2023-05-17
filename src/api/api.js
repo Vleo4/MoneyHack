@@ -1,4 +1,4 @@
-/* import axios from "axios";
+import axios from "axios";
 import { getFromLocalStorage, saveToLocalStorage } from "./tokenStorage";
 import jwtDecode from "jwt-decode";
 
@@ -95,4 +95,3 @@ export const sendTokenToBackend = async (tokenId) => {
         console.error("Error while sending token to backend:", error);
     }
 };
- */
