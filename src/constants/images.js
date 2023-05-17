@@ -26,6 +26,7 @@ import ArrowDown from '../assets/Profit/ArrowDown.svg';
 
 import Pin from '../assets/Login/Pin.svg';
 import CloseEye from '../assets/Login/CloseEye.svg';
+import CloseAlert from '../assets/Login/CloseAlert.svg';
 import OpenEye from '../assets/Login/OpenEye.svg';
 import User from '../assets/Login/User.svg';
 import Google from '../assets/Login/Google.svg';
@@ -61,4 +62,5 @@ export default {
     User,
     Google,
     Mail,
+    CloseAlert,
 }

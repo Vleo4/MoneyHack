@@ -2,7 +2,7 @@ import axios from "axios";
 import { getFromLocalStorage, saveToLocalStorage } from "./tokenStorage";
 import jwtDecode from "jwt-decode";
 
-const url = "https://mentalmate.brainstormingapplication.com/api/";
+const url = "https://moneyhack.brainstormingapplication.com/api/";
 const accessToken = getFromLocalStorage("ACCESS_TOKEN");
 const refreshToken = getFromLocalStorage("REFRESH_TOKEN");
 let token;
@@ -87,10 +87,7 @@ export const sendTokenToBackend = async (tokenId) => {
         const data = response.data;
         saveToLocalStorage("ACCESS_TOKEN", data.access);
         saveToLocalStorage("REFRESH_TOKEN", data.refresh);
-        if(location.pathname==='/login')
-        {
-            window.location.href='/';
-        }
+        window.location.href='/profit';
     } catch (error) {
         console.error("Error while sending token to backend:", error);
     }
