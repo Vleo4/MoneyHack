@@ -22,6 +22,15 @@ import Add from '../assets/Profit/Add.svg';
 import Check from '../assets/Profit/Check.svg';
 import ArrowDown from '../assets/Profit/ArrowDown.svg';
 
+//LOGIN
+
+import Pin from '../assets/Login/Pin.svg';
+import CloseEye from '../assets/Login/CloseEye.svg';
+import OpenEye from '../assets/Login/OpenEye.svg';
+import User from '../assets/Login/User.svg';
+import Google from '../assets/Login/Google.svg';
+import Mail from '../assets/Login/Mail.svg';
+
 export default {
     // MAIN
     MoneyBG,
@@ -44,4 +53,12 @@ export default {
     Add,
     Check,
     ArrowDown,
+
+    //LOGIN
+    Pin,
+    CloseEye,
+    OpenEye,
+    User,
+    Google,
+    Mail,
 }
