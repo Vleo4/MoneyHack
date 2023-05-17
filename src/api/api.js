@@ -12,17 +12,6 @@ if (accessToken) {
     console.log(token);
 }
 
-// --------------- PROFILE ------------------------
-
-export const profileApi = async () => {
-    try {
-        const userId = jwtDecode(accessToken).user_id;
-        const response = await axios.get(url + `psycho/${userId}/`);
-        return response.data;
-    } catch (error) {
-        console.log(error);
-    }
-};
 
 export const registerApi = async (username, email, password ) => {
     try {
@@ -59,7 +48,70 @@ export const refresh = async () => {
     }
 };
 
-
+export const getProfit = async () => {
+    try {
+        const response = await axios.get(url + "profits/",
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const newProfit = async (note,value,category,time) => {
+    try {
+        const response = await axios.post(url + "profit/create/",
+        {
+            "note": note,
+            "value": value,
+            "category": category,
+            "time": time+"T00:00:00Z"
+        },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const editProfit = async (note,value,category,time,id) => {
+    try {
+        const response = await axios.put(url + "profit/update/"+id+"/",
+            {
+                "note": note,
+                "value": value,
+                "category": category,
+                "time": time+"T00:00:00Z"
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const deleteProfit = async (id) => {
+    try {
+        const response = await axios.delete(url + "profit/destroy/"+id+"/",
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 // --------------- GOOGLE LOGIN ------------------------
 
 export const onSuccess = (response) => {

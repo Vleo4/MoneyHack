@@ -80,7 +80,7 @@ const Register = () => {
   }, [login, pass, email]);
   React.useEffect(() => {
     if (isAuth()) {
-      window.location.href = "/";
+      window.location.href = "/profit";
     }
   }, [isAuth()]);
   return (
