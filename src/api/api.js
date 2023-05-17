@@ -112,6 +112,73 @@ export const deleteProfit = async (id) => {
         console.log(error);
     }
 };
+
+
+// --------------- LOSS ------------------------
+export const getLoss = async () => {
+    try {
+        const response = await axios.get(url + "looses/",
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const newLoss = async (note,value,category,time) => {
+    try {
+        const response = await axios.post(url + "lose/create/",
+        {
+            "note": note,
+            "value": value,
+            "category": category,
+            "time": time+"T00:00:00Z"
+        },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const editLoss = async (note,value,category,time,id) => {
+    try {
+        const response = await axios.put(url + "lose/update/"+id+"/",
+            {
+                "note": note,
+                "value": value,
+                "category": category,
+                "time": time+"T00:00:00Z"
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const deleteLoss = async (id) => {
+    try {
+        const response = await axios.delete(url + "lose/destroy/"+id+"/",
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 // --------------- GOOGLE LOGIN ------------------------
 
 export const onSuccess = (response) => {

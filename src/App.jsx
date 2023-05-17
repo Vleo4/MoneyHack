@@ -9,6 +9,7 @@ import {
 import {Login, Main, Profit, Register} from "./pages/index.js";
 import { BurgerMenu, Sidebar } from "./components";
 import { useEffect, useState } from "react";
+import Loss from "./pages/Loss/Loss";
 const Layout = () => {
   const location = useLocation();
   const hideSidebar = location.pathname === "/"
@@ -37,6 +38,7 @@ const Layout = () => {
         <Routes>
           <Route path="/" exact element={<Main />} />
           <Route path="/profit" exact element={<Profit />} />
+          <Route path="/loss" exact element={<Loss />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="*" element={<Navigate to="/" replace />} />

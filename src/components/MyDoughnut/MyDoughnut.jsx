@@ -17,7 +17,7 @@ const MyDoughnut = (props) => {
             const value = context.chart.data.datasets[0].data[dataIndex];
             return `${value} ГРН`;
           },
-          title:()=>null,
+          /* title:()=>null, */
         },
         displayColors: false,
       },
@@ -29,7 +29,7 @@ const MyDoughnut = (props) => {
       {
         data: value,
         backgroundColor: props.hover.map((hovered) =>
-            hovered ?  props.background:"rgba(0, 0, 0, 0.1)"
+          hovered ? props.background : "rgba(0, 0, 0, 0.1)"
         ),
         hoverBackgroundColor: props.background,
         borderWidth: 1,

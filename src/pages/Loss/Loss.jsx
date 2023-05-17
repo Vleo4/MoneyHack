@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import images from "../../constants/images";
-import "./Profit.css";
+import "./Loss.css";
 import "../Main/Main.css";
-import {
-  deleteProfit,
-  editProfit,
-  getProfit,
-  newProfit,
-} from "../../api/api.js";
+import { deleteLoss, editLoss, getLoss, newLoss } from "../../api/api.js";
 import { Loader, MyDoughnut } from "../../components";
 import { isAuth } from "../../api/AuthContext";
-const Profit = () => {
+const Loss = () => {
   const [hover, setHover] = useState([]);
   const handleHover = (index, bool) => {
     setHover((prevHover) => {
@@ -40,7 +35,7 @@ const Profit = () => {
   const [id, setId] = useState();
   const getData = async () => {
     setIsLoading(true);
-    const profit = await getProfit();
+    const profit = await getLoss();
     const hoverArray = profit.map(() => false);
     setHover(hoverArray);
     setData(profit);
@@ -204,35 +199,26 @@ const Profit = () => {
   };
 
   const categories = [
-    {
-      category: "Заробітна плата",
-    },
-    {
-      category: "Бізнес-прибуток",
-    },
-    {
-      category: "Інвестиційний дохід",
-    },
-    {
-      category: "Капітальний дохід",
-    },
-    {
-      category: "Премії",
-    },
-    {
-      category: "Продаж товарів",
-    },
-    {
-      category: "Авторські винагороди",
-    },
-    {
-      category: "Інше",
-    },
+    { cat: "Продукти" },
+    { cat: "Кафе та ресторани" },
+    { cat: "Інше" },
+    { cat: "Розваги та спорт" },
+    { cat: "Поповнення мобільного" },
+    { cat: "Медицина" },
+    { cat: "Подорожі" },
+    { cat: "Таксі" },
+    { cat: "Комунальні послуги" },
+    { cat: "Одяг та взуття" },
+    { cat: "Кіно" },
+    { cat: "Тварини" },
+    { cat: "Книги" },
   ];
+
+  const isLoss = location.pathname === "/loss";
   return (
-    <div className="profit">
+    <div className={`profit ${isLoss && "loss"}`}>
       <div className="profit-wrapper">
-        <h2>Профіт</h2>
+        <h2>Витрати</h2>
         <div
           className="profit-container"
           style={{ height: !historyLink ? "100%" : "705px" }}
@@ -274,11 +260,11 @@ const Profit = () => {
                     onChange={handleEndDateChange}
                   />
                 </div>
-                <h3 className="h3-vitrata">Кількість профіту в категорії</h3>
+                <h3 className="h3-vitrata">Кількість витрат у категорії</h3>
                 <div className="spend-block-text-wrapper">
                   {dataDoughnut.map((spend, index) => (
                     <div
-                      className="spend-block-text_data"
+                      className={`spend-block-text_data ${isLoss && "loss"}`}
                       onMouseOver={() => {
                         handleHover(index, true);
                       }}
@@ -298,7 +284,7 @@ const Profit = () => {
                   <MyDoughnut
                     hover={hover}
                     data={dataDoughnut}
-                    background={"rgba(0, 125, 46, 1)"}
+                    background={"rgba(209, 35, 35, 1)"}
                   />
                 )}
               </div>
@@ -358,12 +344,10 @@ const Profit = () => {
                             >
                               {categories.map((cat) => (
                                 <h6
-                                  onClick={() =>
-                                    handleOptionClick(cat.category)
-                                  }
-                                  key={cat.category}
+                                  onClick={() => handleOptionClick(cat.cat)}
+                                  key={cat.cat}
                                 >
-                                  {cat.category}
+                                  {cat.cat}
                                 </h6>
                               ))}
                             </div>
@@ -385,20 +369,14 @@ const Profit = () => {
                           <img
                             onClick={() => {
                               if (isEdit) {
-                                editProfit(
-                                  note,
-                                  money,
-                                  selectedOption,
-                                  date,
-                                  id
-                                );
+                                editLoss(note, money, selectedOption, date, id);
                                 setIsEdit(false);
                                 setSelectedOption("Інше");
                                 setMoney();
                                 setNote();
                                 setDate();
                               } else {
-                                newProfit(note, money, selectedOption, date);
+                                newLoss(note, money, selectedOption, date);
                                 setIsEdit(false);
                                 setSelectedOption("Інше");
                                 setMoney();
@@ -440,7 +418,7 @@ const Profit = () => {
                             <img
                               src={images.Delete}
                               onClick={() => {
-                                deleteProfit(d.id).then();
+                                deleteLoss(d.id).then();
                                 setTimeout(getData, 500);
                               }}
                               alt="Delete"
@@ -460,4 +438,4 @@ const Profit = () => {
   );
 };
 
-export default Profit;
+export default Loss;

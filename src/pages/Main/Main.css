@@ -244,6 +244,13 @@
   border-radius: 6px;
 }
 
+.spend-block-text_data.loss:hover {
+  background: rgba(209, 35, 35, 0.3);
+  
+}
+.spend-block-text_data.loss:hover p{
+  color: #d12323;
+}
 .profit-block-text_data:hover {
   background: rgba(91, 209, 35, 0.3);
   border-radius: 6px;
@@ -251,6 +258,7 @@
 
 .spend-block-text_data:hover p {
   color: #88ffb0;
+  
 }
 
 .profit-block-text_data:hover p {
