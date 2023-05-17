@@ -1,24 +1,48 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import images from "../../constants/images";
 import "./Profit.css";
+import {deleteProfit, editProfit, getProfit, newProfit} from "../../api/api.js";
 
 const Profit = () => {
-  const digits = /^[0-9]*$/;
-  const [number, setNumber] = useState(null);
-
+  const [data,setData]=useState([]);
+  const [date,setDate]=useState();
+  const [note,setNote]=useState();
+  const [money,setMoney]=useState();
+  const [isEdit, setIsEdit]=useState(false);
+  const [id,setId]=useState();
+  const getData = async ()=> {
+    const profit = await getProfit();
+    setData(profit);
+  }
+  useEffect(()=>{
+    getData().then();
+  },[])
   const handleNumber = (event) => {
-    if (digits.test(event.target.value) && event.target.value.length <= 12) {
-      setNumber(event.target.value);
+    const value = event.target.value.replace(/[^\d]/g, '');
+    if (value.length <= 12) {
+      setMoney(value);
     }
   };
 
   const [historyLink, setHistoryLink] = useState(true);
-  const [isEdit, setIsEdit] = useState(false);
-
-  const handleEditClick = () => {
-    setIsEdit(!isEdit);
-  };
-
+  const [isAdd, setIsAdd] = useState(false);
+  const handleAdd=(index)=> {
+    if(index!==undefined){
+      setIsEdit(true);
+      setSelectedOption(data[index].category);
+      setMoney(parseInt(data[index].value));
+      setNote(data[index].note);
+      setDate(data[index].time.slice(0, 10));
+    }
+    else{
+      setIsEdit(false);
+      setSelectedOption();
+      setMoney();
+      setNote();
+      setDate();
+    }
+    setIsAdd(!isAdd);
+  }
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -29,7 +53,6 @@ const Profit = () => {
     setSelectedOption(option);
     setIsDropdownOpen(false);
   };
-
   return (
     <div className="profit">
       <div className="profit-wrapper">
@@ -70,21 +93,20 @@ const Profit = () => {
             <p>
               Дата <img src={images.Arrows} alt="Arrows" />
             </p>
-            <button>
+            <button onClick={()=>{handleAdd()}}>
               <p>Додати</p>
               <img src={images.Add} alt="Add" />
             </button>
           </div>
-
           <div className="profit-container-blocks">
             {/* --------------- COMPONENT -------------------- */}
-            <div className="block">
-              {isEdit ? (
+            {isAdd&&(
+                <div className="block">
                 <>
                   <input
                     type="text"
                     placeholder="ГРН"
-                    value={number}
+                    value={money}
                     onChange={(e) => {
                       handleNumber(e);
                     }}
@@ -131,26 +153,42 @@ const Profit = () => {
                       </h6>
                     </div>
                   </div>
-                  <input type="text" />
+                  <input type="text" value={note} onChange={(e)=>{setNote(e.target.value);}}/>
+                  <input type="date" value={date} onChange={(e)=>{setDate(e.target.value);}}/>
+                  <img onClick={()=>{if(isEdit){
+                    editProfit(note, money, selectedOption, date,id);
+                  }
+                    else {
+                    newProfit(note, money, selectedOption, date);
+                  }
+                    handleAdd();
+                    setTimeout(getData, 200);
+                  }}
+                       className="addIcon"
+                       src={isEdit?images.Check:images.Add} alt="Add" />
                 </>
-              ) : (
-                <>
-                  <p>1000.25 грн</p>
-                  <p>Премія</p>
-                  <p>10889917228942977461801886991562875332015211812811</p>
-                </>
-              )}
-              <p>24 травня, 2022</p>
-              <div className="buttons">
-                <img
-                  src={isEdit ? images.Check : images.Edit}
-                  alt="Edit"
-                  onClick={handleEditClick}
-                />
-                <img src={images.Delete} alt="Delete" />
-              </div>
+
             </div>
-            {/* ----------------------------------- */}
+            )}
+            {data.length>0&&data.map((d,index)=>{return(
+              <div key={index} className="block">
+                <p>{parseInt(d.value)}</p>
+                <p>{d.category}</p>
+                <p>{d.note}</p>
+                <p>{new Date(d.time).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                <div className="buttons">
+                  <img
+                      src={images.Edit}
+                      alt="Edit"
+                      onClick={()=>{handleAdd(index); setId(d.id)}}
+                  />
+                  <img src={images.Delete} onClick={()=>{
+                    deleteProfit(d.id).then();
+                    setTimeout(getData, 200);
+                  }} alt="Delete" />
+                </div>
+              </div>
+            )})}
           </div>
         </div>
       </div>

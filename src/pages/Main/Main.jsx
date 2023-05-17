@@ -6,7 +6,6 @@ import {useEffect, useState} from "react";
 
 
 const Main = () => {
-
   const [hover, setHover] = useState([]);
   const [hover2, setHover2] = useState([]);
   const handleHover = (index, bool) => {
