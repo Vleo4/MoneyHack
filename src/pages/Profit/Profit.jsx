@@ -1,16 +1,28 @@
 import { useEffect, useState } from "react";
 import images from "../../constants/images";
 import "./Profit.css";
+import '../Main/Main.css';
 import {
   deleteProfit,
   editProfit,
   getProfit,
   newProfit,
 } from "../../api/api.js";
-import { Loader } from "../../components";
+import {Loader, MyDoughnut} from "../../components";
 import { isAuth } from "../../api/AuthContext";
-
 const Profit = () => {
+  const [hover, setHover] = useState([]);
+  const handleHover = (index, bool) => {
+    setHover((prevHover) => {
+      return prevHover.map((value,howIndex) => {
+        if (howIndex === index) {
+          return bool;
+        } else {
+          return false;
+        }
+      });
+    });
+  };
   useEffect(() => {
     if (!isAuth()) {
       window.location.href = "/login";
@@ -18,6 +30,8 @@ const Profit = () => {
   }, [isAuth()]);
 
   const [data, setData] = useState([]);
+  const [dataDoughnut, setDataDoughnut] = useState([]);
+
   const [date, setDate] = useState();
   const [note, setNote] = useState();
   const [money, setMoney] = useState();
@@ -27,8 +41,20 @@ const Profit = () => {
   const getData = async () => {
     setIsLoading(true);
     const profit = await getProfit();
-    console.log(profit);
+    const hoverArray = profit.map(()=>false);
+    setHover(hoverArray);
     setData(profit);
+    const result = [];
+    profit.forEach((r) => {
+      const existingCategory = result.find((item) => item.category === r.category);
+      if (existingCategory) {
+        existingCategory.value =parseInt(existingCategory.value)
+        existingCategory.value += parseInt(r.value);
+      } else {
+        result.push({ category: r.category, value: parseInt(r.value) });
+      }
+    });
+    setDataDoughnut(result);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -125,6 +151,45 @@ const Profit = () => {
     }
     setData([...filteredData]);
   }, [sortOption, sortDirection]);
+  const [startDate,setStartDate]=useState(null);
+  const [endDate,setEndDate]=useState(null);
+  useEffect(()=>{
+    const result = [];
+    data.forEach((r) => {
+      console.log(endDate);
+      console.log(startDate);
+      const dateR = new Date(r.time).toISOString().split('T')[0];
+      console.log(dateR);
+      if ((dateR >= startDate &&!endDate)||( dateR <= endDate&&!startDate)||( dateR <= endDate&&dateR >= startDate)) {
+        console.log(dateR >= startDate);
+        const existingCategory = result.find((item) => item.category === r.category);
+        if (existingCategory) {
+          existingCategory.value = parseInt(existingCategory.value)
+          existingCategory.value += parseInt(r.value);
+        } else {
+          result.push({category: r.category, value: parseInt(r.value)});
+        }
+      }
+    });
+    setDataDoughnut(result);
+  },[startDate,endDate]);
+  const handleStartDateChange = (e) => {
+    const selectedDate = new Date(e.target.value);
+    const selectedEndDate = new Date(endDate);
+
+    if (selectedDate <= selectedEndDate) {
+      setStartDate(e.target.value);
+    }
+  };
+
+  const handleEndDateChange = (e) => {
+    const selectedDate = new Date(startDate);
+    const selectedEndDate = new Date(e.target.value);
+
+    if (selectedEndDate >= selectedDate) {
+      setEndDate(e.target.value);
+    }
+  };
   return (
     <div className="profit">
       <div className="profit-wrapper">
@@ -153,7 +218,39 @@ const Profit = () => {
             </div>
           </div>
           {!historyLink ? (
-            <div className="">graphic</div>
+              <div className="spend-block2">
+                <div className="spend-block-text">
+                    <h2>Start date</h2>
+                    <input
+                        type="date"
+                        value={startDate}
+                        onChange={handleStartDateChange}
+                    />
+                    <h2>End date</h2>
+                    <input
+                        type="date"
+                        value={endDate}
+                        onChange={handleEndDateChange}
+                    />
+                  <h2>Кількість витрат у категорії</h2>
+                  <div className="spend-block-text-wrapper">
+                    {dataDoughnut.map((spend,index) => (
+                        <div className="spend-block-text_data"
+                             onMouseOver={()=>{handleHover(index,true)}}
+                             onMouseLeave={()=>{handleHover(index,false)}}
+                             key={spend.category}>
+                          <p>{spend.category}</p>
+                          <p>{spend.value} ГРН</p>
+                        </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="spend-block-piechart">
+                  {dataDoughnut&&
+                    <MyDoughnut hover={hover} data={dataDoughnut} background={"rgba(0, 125, 46, 1)"}/>
+                  }
+                </div>
+              </div>
           ) : (
             <>
               <div className="profit-container-labels">
@@ -281,8 +378,18 @@ const Profit = () => {
                                   date,
                                   id
                                 );
+                                setIsEdit(false);
+                                setSelectedOption("Інше");
+                                setMoney();
+                                setNote();
+                                setDate();
                               } else {
                                 newProfit(note, money, selectedOption, date);
+                                setIsEdit(false);
+                                setSelectedOption("Інше");
+                                setMoney();
+                                setNote();
+                                setDate();
                               }
                               handleAdd();
                               setTimeout(getData, 500);

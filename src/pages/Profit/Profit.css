@@ -30,19 +30,16 @@
 }
 
 .profit-container {
-  background: #0c0f0c;
   border-radius: 24px;
   max-width: 1392px;
   width: calc(100% - 100px);
   height: 705px;
 
-  background: radial-gradient(
-      94.36% 181.75% at 72.99% 50.07%,
-      rgba(0, 95, 26, 0.7) 0%,
-      rgba(12, 15, 12, 0) 56.32%
-    ),
-    #0c0f0c;
-  background-repeat: no-repeat;
+  background: #0c0f0c radial-gradient(
+          94.36% 181.75% at 72.99% 50.07%,
+          rgba(0, 95, 26, 0.7) 0%,
+          rgba(12, 15, 12, 0) 56.32%
+  ) no-repeat;
 }
 
 .profit-container_buttons {
@@ -263,7 +260,7 @@
   color: #23d154;
 }
 
-.block input[type="date"],
+input[type="date"],
 .block input[type="text"] {
   all: unset;
   border-bottom: 1px solid #ffffff;
@@ -276,11 +273,11 @@
   color: #ffffff;
 }
 
-.block input[type="date"] {
+input[type="date"] {
   max-width: 150px;
 }
 
-.block input[type="date"]::-webkit-calendar-picker-indicator {
+input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1); /* Invert the color to white */
   cursor: pointer;
 }
@@ -396,4 +393,26 @@
 .addIcon {
   justify-self: flex-end;
   cursor: pointer;
+}
+.spend-block2{
+  max-width: 1392px;
+  width: 100%;
+  position: relative;
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+  .spend-block2 {
+    background: linear-gradient(
+            360deg,
+            rgba(12, 15, 12, 0) 0%,
+            rgba(0, 95, 26, 0.5) 30.39%,
+            rgba(12, 15, 12, 0) 80.02%
+    ),
+    #0c0f0c;
+    flex-direction: column;
+    gap: 50px;
+  }
 }
