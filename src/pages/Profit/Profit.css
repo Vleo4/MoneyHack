@@ -174,7 +174,15 @@
   color: #ffffff;
   word-break: break-all;
 }
+.block p:nth-child(1) {
+  min-width: 60px;
+  word-break: normal;
+}
 
+.block p:nth-child(2) {
+  min-width: 120px;
+  word-break: normal;
+}
 .block p:nth-child(3) {
   max-height: 72px;
   overflow-y: auto;
@@ -331,6 +339,9 @@
     border-radius: 0;
 
     height: 100%;
+  }
+  .profit-container_buttons-item:first-child {
+    border-radius: 0;
   }
 
   .profit-container-labels p {
