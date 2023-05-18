@@ -15,7 +15,10 @@ const BurgerMenu = () => {
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
   };
-
+  const isLoss=location.pathname==='/loss';
+  const isDeposits=location.pathname==='/deposits';
+  const isProfit=location.pathname==='/profit';
+  const isCredits=location.pathname==='/credits';
   return (
     <div className="burgermenu-container">
       <div className="burger-button" onClick={handleToggleMenu}>
@@ -29,7 +32,7 @@ const BurgerMenu = () => {
         <div className="burgermenu">
           <div className="burgermenu-wrapper">
             <div className="burgermenu-profile">
-              <img src={images.Profile} alt="Profile" />
+              <img src={isProfit? images.ProfileProfit :isLoss ?images.ProfileLoss :isDeposits ?images.ProfileDeposit:isCredits?images.ProfileCredit:images.Profile} alt="Profile" />
               <p>Профіль</p>
             </div>
             <span></span>
@@ -39,7 +42,7 @@ const BurgerMenu = () => {
               style={{ marginBottom: 48 }}
               onClick={handleToggleMenu}
             >
-              <img src={images.Profit} alt="Profit" />
+              <img src={isProfit? images.ProfitProfit :isLoss ?images.ProfitLoss :isDeposits ?images.ProfitDeposit:isCredits?images.ProfitCredit:images.Profit} alt="Profit" />
               <p>Профіт</p>
             </Link>
             <Link
@@ -48,7 +51,7 @@ const BurgerMenu = () => {
               style={{ marginBottom: 48 }}
               onClick={handleToggleMenu}
             >
-              <img src={images.Spend} alt="Spend" />
+              <img src={isProfit? images.LossProfit :isLoss ?images.LossLoss :isDeposits ?images.LossDeposit:isCredits?images.LossCredit:images.Spend} alt="Spend" />
               <p>Витрати</p>
             </Link>
             <Link
@@ -57,7 +60,7 @@ const BurgerMenu = () => {
               style={{ marginBottom: 48 }}
               onClick={handleToggleMenu}
             >
-              <img src={images.Credit} alt="Credit" />
+              <img src={isProfit? images.CreditsProfit :isLoss ?images.CreditsLoss :isDeposits ?images.CreditsDeposit:isCredits?images.CreditsCredit:images.Credit} alt="Credit" />
               <p>Кредити</p>
             </Link>
             <Link
@@ -66,7 +69,7 @@ const BurgerMenu = () => {
               style={{ marginBottom: 48 }}
               onClick={handleToggleMenu}
             >
-              <img src={images.Deposit} alt="Deposit" />
+              <img src={isProfit? images.DepositsProfit :isLoss ?images.DepositsLoss :isDeposits ?images.DepositsDeposit:isCredits?images.DepositsCredit:images.Deposit} alt="Deposit" />
               <p>Депозити</p>
             </Link>
             <Link
@@ -75,7 +78,7 @@ const BurgerMenu = () => {
               style={{ marginBottom: 48 }}
               onClick={handleToggleMenu}
             >
-              <img src={images.Report} alt="Report" />
+              <img src={isProfit? images.ReportsProfit :isLoss ?images.ReportsLoss :isDeposits ?images.ReportsDeposit:isCredits?images.ReportsCredit:images.Report} alt="Report" />
               <p>Звіти</p>
             </Link>
           </div>
@@ -86,7 +89,7 @@ const BurgerMenu = () => {
               logOut();
             }}
           >
-            <img src={images.Logout} alt="Logout" />
+            <img src={isProfit? images.ExitProfit :isLoss ?images.ExitLoss :isDeposits ?images.ExitDeposit:isCredits?images.ExitCredit:images.Logout} alt="Logout" />
             <p>Вийти</p>
           </div>
         </div>

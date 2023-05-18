@@ -217,7 +217,7 @@ const Credits = () => {
                   }}
                 >
                   <p>Додати</p>
-                  <img src={images.Add} alt="Add" />
+                  <img src={images.AddCredit} alt="Add" />
                 </button>
               </div>
               <div className="profit-container-blocks">
@@ -242,7 +242,7 @@ const Credits = () => {
                           <div className="category">
                             <button onClick={toggleDropdown}>
                               {selectedOption}{" "}
-                              <img src={images.ArrowDown} alt="ArrowDown" />
+                              <img src={images.ArrowDown} alt="ArrowsDown" />
                             </button>
                             <div
                               className={`category-dropdown ${
@@ -306,7 +306,7 @@ const Credits = () => {
                               setTimeout(getData, 500);
                             }}
                             className="addIcon"
-                            src={isEdit ? images.Check : images.Add}
+                            src={isEdit ? images.CheckCredit : images.AddCredit}
                             alt="Add"
                           />
                         </>
@@ -335,7 +335,7 @@ const Credits = () => {
                           <p>{d.percentage}</p>
                           <div className="buttons">
                             <img
-                                src={images.Check}
+                                src={images.CheckCredit}
                                 onClick={() => {
                                   closeCredit(d.id).then();
                                   setTimeout(getData, 500);
@@ -343,7 +343,7 @@ const Credits = () => {
                                 alt="Delete"
                             />
                             <img
-                              src={images.Edit}
+                              src={images.EditCredit}
                               alt="Edit"
                               onClick={() => {
                                 handleAdd(index);
@@ -351,7 +351,7 @@ const Credits = () => {
                               }}
                             />
                             <img
-                              src={images.Delete}
+                              src={images.DeleteCredit}
                               onClick={() => {
                                 deleteCredit(d.id).then();
                                 setTimeout(getData, 500);
