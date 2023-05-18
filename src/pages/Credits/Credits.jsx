@@ -53,13 +53,14 @@ const Credits = () => {
   const [historyLink, setHistoryLink] = useState(true);
   const [isAdd, setIsAdd] = useState(false);
   const handleAdd = (index) => {
+    console.log(index)
     if (index !== undefined) {
       setIsEdit(true);
       setSelectedOption(data[index].category);
       setMoney(parseInt(data[index].value));
       setNote(data[index].note);
-      setStartDate(data[index].time.slice(0, 10));
-      setEndDate(data[index].time.slice(0, 10));
+      setStartDate(data[index].start_time.slice(0, 10));
+      setEndDate(data[index].end_time.slice(0, 10));
       setPercent(data[index].percentage);
     } else {
       setIsEdit(false);
@@ -186,40 +187,90 @@ const Credits = () => {
               <p>Закрито</p>
             </div>
           </div>
+          <div className="profit-container-labels credits">
+            <p onClick={() => handleSortClick("Сума")}>
+              Сума <img src={images.Arrows} alt="Arrows" />
+            </p>
+            <p onClick={() => handleSortClick("Категорія")}>
+              Позиковано <img src={images.Arrows} alt="Arrows" />
+            </p>
+            <p onClick={() => handleSortClick("Нотатка")}>
+              Нотатка <img src={images.Arrows} alt="Arrows" />
+            </p>
+            <p onClick={() => handleSortClick("Дата")}>
+              Дата взяття <img src={images.Arrows} alt="Arrows" />
+            </p>
+            <p onClick={() => handleSortClick("Дата")}>
+              Дата гасіння <img src={images.Arrows} alt="Arrows" />
+            </p>
+            <p onClick={() => handleSortClick("Відсоток")}>
+              Відсоток <img src={images.Arrows} alt="Arrows" />
+            </p>
+            <button
+                onClick={() => {
+                  handleAdd();
+                }}
+            >
+              <p>Додати</p>
+              <img src={images.AddCredit} alt="Add" />
+            </button>
+          </div>
           {!historyLink ? (
-            <div className="spend-block2">
-             ЗАКРИТО
+            <div className="profit-container-blocks">
+              {data.map((d, index) => {
+                if (d.is_closed) {
+                  return (
+                      <div key={index} className="block credits">
+                        <p>{parseInt(d.value)} ГРН</p>
+                        <p>{d.from_where}</p>
+                        <p>{d.note}</p>
+                        <p>
+                          {new Date(d.start_time).toLocaleDateString("uk-UA", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          })}
+                        </p>
+                        <p>
+                          {new Date(d.end_time).toLocaleDateString("uk-UA", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          })}
+                        </p>
+                        <p>{d.percentage}%</p>
+                        <div className="buttons">
+                          <img
+                              src={images.CheckCredit}
+                              onClick={() => {
+                                closeCredit(d.id).then();
+                                setTimeout(getData, 500);
+                              }}
+                              alt="Delete"
+                          />
+                          <img
+                              src={images.EditCredit}
+                              alt="Edit"
+                              onClick={() => {
+                                handleAdd(index);
+                                setId(d.id);
+                              }}
+                          />
+                          <img
+                              src={images.DeleteCredit}
+                              onClick={() => {
+                                deleteCredit(d.id).then();
+                                setTimeout(getData, 500);
+                              }}
+                              alt="Delete"
+                          />
+                        </div>
+                      </div>
+                  );
+                }})}
             </div>
           ) : (
             <>
-              <div className="profit-container-labels credits">
-                <p onClick={() => handleSortClick("Сума")}>
-                  Сума <img src={images.Arrows} alt="Arrows" />
-                </p>
-                <p onClick={() => handleSortClick("Категорія")}>
-                  Позиковано <img src={images.Arrows} alt="Arrows" />
-                </p>
-                <p onClick={() => handleSortClick("Нотатка")}>
-                  Нотатка <img src={images.Arrows} alt="Arrows" />
-                </p>
-                <p onClick={() => handleSortClick("Дата")}>
-                  Дата взяття <img src={images.Arrows} alt="Arrows" />
-                </p>
-                <p onClick={() => handleSortClick("Дата")}>
-                  Дата гасіння <img src={images.Arrows} alt="Arrows" />
-                </p>
-                <p onClick={() => handleSortClick("Відсоток")}>
-                  Відсоток <img src={images.Arrows} alt="Arrows" />
-                </p>
-                <button
-                  onClick={() => {
-                    handleAdd();
-                  }}
-                >
-                  <p>Додати</p>
-                  <img src={images.AddCredit} alt="Add" />
-                </button>
-              </div>
               <div className="profit-container-blocks">
                 {isLoading ? (
                   <div className="loading-screen">
@@ -313,54 +364,56 @@ const Credits = () => {
                       </div>
                     )}
                     {data.map((d, index) => {
-                      return (
-                        <div key={index} className="block credits">
-                          <p>{parseInt(d.value)} ГРН</p>
-                          <p>{d.from_where}</p>
-                          <p>{d.note}</p>
-                          <p>
-                            {new Date(d.start_time).toLocaleDateString("uk-UA", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })}
-                          </p>
-                          <p>
-                            {new Date(d.end_time).toLocaleDateString("uk-UA", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })}
-                          </p>
-                          <p>{d.percentage}%</p>
-                          <div className="buttons">
-                            <img
-                                src={images.CheckCredit}
-                                onClick={() => {
-                                  closeCredit(d.id).then();
-                                  setTimeout(getData, 500);
-                                }}
-                                alt="Delete"
-                            />
-                            <img
-                              src={images.EditCredit}
-                              alt="Edit"
-                              onClick={() => {
-                                handleAdd(index);
-                                setId(d.id);
-                              }}
-                            />
-                            <img
-                              src={images.DeleteCredit}
-                              onClick={() => {
-                                deleteCredit(d.id).then();
-                                setTimeout(getData, 500);
-                              }}
-                              alt="Delete"
-                            />
-                          </div>
-                        </div>
-                      );
+                      if (!d.is_closed) {
+                        return (
+                            <div key={index} className="block credits">
+                              <p>{parseInt(d.value)} ГРН</p>
+                              <p>{d.from_where}</p>
+                              <p>{d.note}</p>
+                              <p>
+                                {new Date(d.start_time).toLocaleDateString("uk-UA", {
+                                  day: "numeric",
+                                  month: "long",
+                                  year: "numeric",
+                                })}
+                              </p>
+                              <p>
+                                {new Date(d.end_time).toLocaleDateString("uk-UA", {
+                                  day: "numeric",
+                                  month: "long",
+                                  year: "numeric",
+                                })}
+                              </p>
+                              <p>{d.percentage}%</p>
+                              <div className="buttons">
+                                <img
+                                    src={images.CheckCredit}
+                                    onClick={() => {
+                                      closeCredit(d.id).then();
+                                      setTimeout(getData, 500);
+                                    }}
+                                    alt="Delete"
+                                />
+                                <img
+                                    src={images.EditCredit}
+                                    alt="Edit"
+                                    onClick={() => {
+                                      handleAdd(index);
+                                      setId(d.id);
+                                    }}
+                                />
+                                <img
+                                    src={images.DeleteCredit}
+                                    onClick={() => {
+                                      deleteCredit(d.id).then();
+                                      setTimeout(getData, 500);
+                                    }}
+                                    alt="Delete"
+                                />
+                              </div>
+                            </div>
+                        );
+                      }
                     })}
                   </>
                 )}
