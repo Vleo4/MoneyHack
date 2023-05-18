@@ -1,6 +1,6 @@
 import "./Report.css";
 import images from "../../constants/images";
-import { LineChart } from "../../components";
+import {LineChart, Loader} from "../../components";
 import {getCredit, getLoss, getProfit} from "../../api/api";
 import { useEffect, useState } from "react";
 import { isAuth } from "../../api/AuthContext";
@@ -73,6 +73,9 @@ const Report = () => {
       <div className="report-wrapper">
         <h2>Звіти</h2>
         <div className="report-container">
+          {isLoading?<div className="loading-screen2">
+            <Loader />
+          </div>:<>
           <div className="profitBlock-wrapper">
             <div className="profitBlock">
               <div className="profitBlock-text">
@@ -124,6 +127,7 @@ const Report = () => {
                 <p>
                   Дата взяття <img src={images.Arrows} alt="Arrows" />
                 </p>
+
               </div>
               {dataCredit.map((c) => {
                 if (!c.is_closed) {
@@ -133,19 +137,20 @@ const Report = () => {
                         <p>{c.from_where}</p>
                         <p>{c.note}</p>
                         <p>{  new Date(c.start_time).toLocaleDateString("uk-UA", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                          })}</p>
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })}</p>
                       </div>
                   );
                 }
                 return null;
               })}
-
             </div>
           </div>
+          </> }
         </div>
+
       </div>
     </div>
   );

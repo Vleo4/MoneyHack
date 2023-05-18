@@ -23,7 +23,7 @@ const Deposits = () => {
     setIsLoading(true);
     const profit = await getDeposit();
     setData(profit);
-    console.log(profit)
+    console.log(profit);
     setIsLoading(false);
   };
   useEffect(() => {
