@@ -240,7 +240,7 @@ export const editCredit = async (note,value,category,time,time2,percent,id) => {
 };
 export const closeCredit = async (id) => {
     try {
-        const response = await axios.put(url + "credit/update/"+id+"/",
+        const response = await axios.put(url + "credit/close/"+id+"/",
             {},
             {
                 headers: {
@@ -329,7 +329,7 @@ export const editDeposit = async (note,value,category,time,time2,percent,id) => 
 };
 export const closeDeposit = async (id) => {
     try {
-        const response = await axios.put(url + "deposit/update/"+id+"/",
+        const response = await axios.put(url + "deposit/close/"+id+"/",
             {},
             {
                 headers: {
