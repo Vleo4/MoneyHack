@@ -179,6 +179,183 @@ export const deleteLoss = async (id) => {
         console.log(error);
     }
 };
+
+// --------------- Credit ------------------------
+export const getCredit = async () => {
+    try {
+        const response = await axios.get(url + "credits/",
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const newCredit = async (note,value,category,time,time2,percent) => {
+    try {
+        const response = await axios.post(url + "credit/create/",
+            {
+                "note": note,
+                "value": value,
+                "type_of_credit": "A",
+                "start_time": time+"T00:00:00Z",
+                "end_time": time2+"T00:00:00Z",
+                "from_where": category,
+                "percentage":percent
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const editCredit = async (note,value,category,time,time2,percent,id) => {
+    try {
+        const response = await axios.put(url + "credit/update/"+id+"/",
+            {
+                "note": note,
+                "value": value,
+                "type_of_credit": "A",
+                "start_time": time+"T00:00:00Z",
+                "end_time": time2+"T00:00:00Z",
+                "from_where": category,
+                "percentage":percent
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const closeCredit = async (id) => {
+    try {
+        const response = await axios.put(url + "credit/update/"+id+"/",
+            {},
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const deleteCredit = async (id) => {
+    try {
+        const response = await axios.delete(url + "credit/destroy/"+id+"/",
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+
+
+// --------------- Deposit ------------------------
+export const getDeposit = async () => {
+    try {
+        const response = await axios.get(url + "deposits/",
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const newDeposit = async (note,value,category,time,time2,percent) => {
+    try {
+        const response = await axios.post(url + "deposit/create/",
+            {
+                "note": note,
+                "value": value,
+                "type_of_credit": "A",
+                "start_time": time+"T00:00:00Z",
+                "end_time": time2+"T00:00:00Z",
+                "from_where": category,
+                "percentage":percent
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const editDeposit = async (note,value,category,time,time2,percent,id) => {
+    try {
+        const response = await axios.put(url + "deposit/update/"+id+"/",
+            {
+                "note": note,
+                "value": value,
+                "type_of_credit": "A",
+                "start_time": time+"T00:00:00Z",
+                "end_time": time2+"T00:00:00Z",
+                "from_where": category,
+                "percentage":percent
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const closeDeposit = async (id) => {
+    try {
+        const response = await axios.put(url + "deposit/update/"+id+"/",
+            {},
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const deleteDeposit = async (id) => {
+    try {
+        const response = await axios.delete(url + "deposit/destroy/"+id+"/",
+            {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                },
+            });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
 // --------------- GOOGLE LOGIN ------------------------
 
 export const onSuccess = (response) => {
