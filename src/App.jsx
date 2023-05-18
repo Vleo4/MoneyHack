@@ -6,7 +6,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import {Login, Main, Profit, Register, Loss, Deposits, Credits} from "./pages/index.js";
+import {Login, Main, Profit, Register, Loss, Deposits, Credits, Report} from "./pages/index.js";
 import { BurgerMenu, Sidebar } from "./components";
 import { useEffect, useState } from "react";
 const Layout = () => {
@@ -40,6 +40,7 @@ const Layout = () => {
           <Route path="/loss" exact element={<Loss />} />
           <Route path="/credits" exact element={<Credits />} />
           <Route path="/deposits" exact element={<Deposits />} />
+          <Route path="/reports" exact element={<Report />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="*" element={<Navigate to="/" replace />} />

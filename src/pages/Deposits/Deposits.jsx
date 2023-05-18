@@ -184,7 +184,7 @@ const Deposits = () => {
                   }`}
                   onClick={handleHistoryLink}
               >
-                <p>ДЕТАЛЬНО</p>
+                <p>Детально</p>
               </div>
             </div>
             {!historyLink ?(<>
@@ -411,7 +411,7 @@ const Deposits = () => {
                                       year: "numeric",
                                     })}
                                   </p>
-                                  <p>{d.percentage}</p>
+                                  <p>{d.percentage}%</p>
                                   <div className="buttons">
                                     <img
                                         src={images.CheckDeposit}
