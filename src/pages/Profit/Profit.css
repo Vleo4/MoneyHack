@@ -11,13 +11,12 @@
   background: #130e0e;
 
   .profit-container {
-    background: #0f0c0c
-      radial-gradient(
-        94.36% 181.75% at 72.99% 50.07%,
+    background: radial-gradient(
+        circle at 80% 50%,
         rgba(95, 0, 0, 0.7) 0%,
-        rgba(12, 15, 12, 0) 56.32%
-      )
-      no-repeat;
+        rgba(12, 15, 12, 0) 100%
+      ),
+      #0f0c0c;
   }
   .profit-container_buttons {
     border-bottom: 1px solid rgba(209, 35, 35, 0.3);
@@ -42,69 +41,89 @@
   .block input[type="text"]:first-child::-webkit-input-placeholder {
     color: rgba(161, 26, 26, 0.3);
   }
+  .profit-container-labels button {
+    border: 1px solid rgba(209, 35, 35, 0.3);
+  }
 }
 
 .profit.credits {
-  background: #130e0e;
+  background: #13130e;
 
-.profit-container {
-  background: radial-gradient(94.36% 181.75% at 72.99% 50.07%, rgba(95, 85, 0, 0.7) 0%, rgba(12, 15, 12, 0) 56.32%), #0F0C0C;
-}
-.profit-container_buttons {
-  border-bottom: 1px solid rgba(158, 161, 26, 0.3);
-}
-.profit-container_buttons-item {
-  border-right: 1px solid rgba(158, 161, 26, 0.3);
-}
-.profit-container_buttons-item.active {
-  background: rgba(158, 161, 26, 0.3);
-}
-.block {
-  border: 1px solid rgba(195, 209, 35, 0.3);
-}
-.block p:first-child {
-  color: #9EA11A;
-}
-.block input[type="text"]:first-child {
-  border-bottom: 1px solid #C3D123;
-  color: #C3D123;
-}
+  .profit-container {
+    background: radial-gradient(
+        circle at 80% 50%,
+        rgba(95, 85, 0, 0.7) 0%,
+        rgba(12, 15, 12, 0) 100%
+      ),
+      #0f0c0c;
+  }
+  .profit-container_buttons {
+    border-bottom: 1px solid rgba(158, 161, 26, 0.3);
+  }
+  .profit-container_buttons-item {
+    border-right: 1px solid rgba(158, 161, 26, 0.3);
+  }
+  .profit-container_buttons-item.active {
+    background: rgba(158, 161, 26, 0.3);
+  }
+  .block {
+    border: 1px solid rgba(195, 209, 35, 0.3);
+  }
+  .block p:first-child {
+    color: #9ea11a;
+  }
+  .block input[type="text"]:first-child {
+    border-bottom: 1px solid #c3d123;
+    color: #c3d123;
+  }
 
-.block.credits input[type="text"]:first-child::-webkit-input-placeholder {
-  color: rgba(195, 209, 35, 0.3);
-}
+  .block.credits input[type="text"]:first-child::-webkit-input-placeholder {
+    color: rgba(195, 209, 35, 0.3);
+  }
+  .profit-container-labels button {
+    border: 1px solid rgba(195, 209, 35, 0.3);
+  }
 }
 
 .profit.deposit {
-  background: #130e0e;
+  background: #0e1113;
 
-.profit-container {
-  background: radial-gradient(94.36% 181.75% at 72.99% 50.07%, rgba(26, 88, 161, 0.7) 0%, rgba(12, 15, 12, 0) 56.32%), #0F0C0C;
-}
-.profit-container_buttons {
-  border-bottom: 1px solid rgba(35, 147, 209, 0.3);
-}
-.profit-container_buttons-item {
-  border-right: 1px solid rgba(35, 147, 209, 0.3);
-}
-.profit-container_buttons-item.active {
-  background: rgba(26, 88, 161, 0.3);
-}
-.block {
-  border: 1px solid rgba(35, 147, 209, 0.3);
-}
-.block p:first-child {
-  color: #2393D1;
-}
-.block input[type="text"]:first-child {
-  border-bottom: 1px solid #2393D1;
-  color: #2393D1;
+  .profit-container {
+    background: radial-gradient(
+        circle at 80% 50%,
+        rgba(26, 88, 161, 0.7) 0%,
+        rgba(12, 15, 12, 0) 100%
+      ),
+      #0f0c0c;
+  }
+  .profit-container_buttons {
+    border-bottom: 1px solid rgba(35, 147, 209, 0.3);
+  }
+  .profit-container_buttons-item {
+    border-right: 1px solid rgba(35, 147, 209, 0.3);
+  }
+  .profit-container_buttons-item.active {
+    background: rgba(26, 88, 161, 0.3);
+  }
+  .block {
+    border: 1px solid rgba(35, 147, 209, 0.3);
+  }
+  .block p:first-child {
+    color: #2393d1;
+  }
+  .block input[type="text"]:first-child {
+    border-bottom: 1px solid #2393d1;
+    color: #2393d1;
+  }
+
+  .block input[type="text"]:first-child::-webkit-input-placeholder {
+    color: rgba(35, 147, 209, 0.3);
+  }
+  .profit-container-labels button {
+    border: 1px solid rgba(35, 147, 209, 0.3);
+  }
 }
 
-.block input[type="text"]:first-child::-webkit-input-placeholder {
-  color: rgba(35, 147, 209, 0.3);
-}
-}
 .profit-wrapper {
   padding: 0 20px;
   display: flex;
@@ -133,13 +152,12 @@
   width: calc(100% - 100px);
   min-height: 705px;
 
-  background: #0c0f0c
-    radial-gradient(
-      94.36% 181.75% at 72.99% 50.07%,
+  background: radial-gradient(
+      circle at 80% 50%,
       rgba(0, 95, 26, 0.7) 0%,
-      rgba(12, 15, 12, 0) 56.32%
-    )
-    no-repeat;
+      rgba(12, 15, 12, 0) 100%
+    ),
+    #0f0c0c;
 }
 
 .profit-container_buttons {
@@ -186,7 +204,7 @@
   width: 100%;
 }
 .profit-container-labels.credits,
-.profit-container-labels.deposit{
+.profit-container-labels.deposit {
   grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
 }
 
@@ -206,7 +224,7 @@
   line-height: 24px;
   color: #ffffff;
   background: rgba(12, 15, 12, 0.1);
-  border: 1px solid #ffffff;
+  border: 1px solid rgba(35, 209, 84, 0.3);
   border-radius: 12px;
   align-self: flex-end;
   justify-self: flex-end;
@@ -261,7 +279,7 @@
   margin-bottom: 16px;
 }
 .block.credits,
-.block.deposit{
+.block.deposit {
   grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
 }
 
@@ -427,12 +445,42 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: auto;
     border: none;
   }
+  .profit.loss {
+    .profit-container-labels button {
+      padding: 0;
+      width: auto;
+      height: auto;
+      border: none;
+    }
+  }
+  .profit.credits {
+    .profit-container-labels button {
+      padding: 0;
+      width: auto;
+      height: auto;
+      border: none;
+    }
+  }
+  .profit.deposit {
+    .profit-container-labels button {
+      padding: 0;
+      width: auto;
+      height: auto;
+      border: none;
+    }
+  }
   .profit-container-labels button p {
     display: none;
   }
 }
 
 @media screen and (max-width: 1024px) {
+  .block.credits,
+  .block.deposit {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    max-height: 320px;
+  }
   .spend-block2 {
     background: linear-gradient(
         360deg,
@@ -509,8 +557,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     grid-template-columns: 2fr;
     grid-template-rows: auto;
     grid-row-gap: 20px;
-    max-height: 280px;
+    max-height: 320px;
   }
+
   .profit-container-labels button {
     all: unset;
     height: 48px;
@@ -528,12 +577,89 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #ffffff;
 
     background: rgba(12, 15, 12, 0.1);
-    border: 1px solid #ffffff;
+    border: 1px solid rgba(35, 209, 84, 0.3);
     border-radius: 12px;
 
     align-self: flex-end;
     justify-self: flex-end;
   }
+  /* ------------------- */
+  .profit.loss {
+    .profit-container-labels button {
+      all: unset;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 130px;
+      padding: 0 12px;
+      width: 100%;
+      cursor: pointer;
+      font-family: var(--font-mont);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #ffffff;
+
+      background: rgba(12, 15, 12, 0.1);
+      border: 1px solid rgba(209, 35, 35, 0.3);
+      border-radius: 12px;
+
+      align-self: flex-end;
+      justify-self: flex-end;
+    }
+  }
+  .profit.credits {
+    .profit-container-labels button {
+      all: unset;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 130px;
+      padding: 0 12px;
+      width: 100%;
+      cursor: pointer;
+      font-family: var(--font-mont);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #ffffff;
+
+      background: rgba(12, 15, 12, 0.1);
+      border: 1px solid rgba(195, 209, 35, 0.3);
+      border-radius: 12px;
+
+      align-self: flex-end;
+      justify-self: flex-end;
+    }
+  }
+  .profit.deposit {
+    .profit-container-labels button {
+      all: unset;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 130px;
+      padding: 0 12px;
+      width: 100%;
+      cursor: pointer;
+      font-family: var(--font-mont);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #ffffff;
+
+      background: rgba(12, 15, 12, 0.1);
+      border: 1px solid rgba(35, 147, 209, 0.3);
+      border-radius: 12px;
+
+      align-self: flex-end;
+      justify-self: flex-end;
+    }
+  }
+  /* ------------------- */
   .profit-container-labels button p {
     display: flex;
   }
@@ -553,9 +679,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     gap: 10px;
   }
 }
-.block.credits input[type="text"]{
+.block.credits input[type="text"] {
   max-width: 150px;
 }
-.block.credits input[type="text"]:first-child{
+.block.credits input[type="text"]:first-child {
   max-width: 100px;
 }

@@ -183,7 +183,7 @@ const Credits = () => {
               }`}
               onClick={handleHistoryLink}
             >
-              <p>ЗАКРИТО</p>
+              <p>Закрито</p>
             </div>
           </div>
           {!historyLink ? (
@@ -332,7 +332,7 @@ const Credits = () => {
                               year: "numeric",
                             })}
                           </p>
-                          <p>{d.percentage}</p>
+                          <p>{d.percentage}%</p>
                           <div className="buttons">
                             <img
                                 src={images.CheckCredit}
