@@ -28,7 +28,7 @@ class GoogleAuthAPIView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
     def create(self, request, *args, **kwargs):
-        CLIENT_ID = '298908062102-2p5834iihc65s1qtua2oskkff673u8cn.apps.googleusercontent.com'
+        CLIENT_ID = '488276422870-q1thm6trrih9sj4l9k4e22785rt47muu.apps.googleusercontent.com'
         token = request.data.get('token')
         try:
             idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)

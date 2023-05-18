@@ -25,6 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class CreditSerializer(serializers.ModelSerializer):
     max_value = serializers.SerializerMethodField()
+    loss = serializers.StringRelatedField()
 
     class Meta:
         model = Credit
@@ -50,9 +51,9 @@ class CloseCreditSerializer(serializers.ModelSerializer):
 
         if instance.is_closed:
             loss = Loss.objects.create(
-                note="credit",
+                note=f"Витрати від кредиту в {instance.from_where}({instance.percentage}%)",
                 value=instance.max_value() - instance.value,
-                category="credit",
+                category="Погашення кредиту",
                 time=timezone.now(),
                 user=instance.user
             )
@@ -70,6 +71,7 @@ class CloseCreditSerializer(serializers.ModelSerializer):
 class DepositSerializer(serializers.ModelSerializer):
     max_value = serializers.SerializerMethodField()
     current_value = serializers.SerializerMethodField()
+    profit = serializers.StringRelatedField()
 
     class Meta:
         model = Deposit
@@ -88,6 +90,7 @@ class CreateDepositSerializer(serializers.ModelSerializer):
 
 
 class CloseDepositSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Deposit
         fields = ['is_closed']
@@ -98,9 +101,9 @@ class CloseDepositSerializer(serializers.ModelSerializer):
 
         if instance.is_closed:
             profit = Profit.objects.create(
-                note="deposit",
+                note=f"Прибуток від депозиту в {instance.from_where}({instance.percentage}%)",
                 value=instance.current_value() - instance.value,
-                category="credit",
+                category="Прибуток від депозиту",
                 time=timezone.now(),
                 user=instance.user
             )

@@ -76,8 +76,10 @@ class Credit(models.Model):
         return f'{self.percentage}% credit from {self.from_where}'
 
     def max_value(self):
-        period = (self.end_time.year - self.start_time.year)
-        return self.value * (1 + self.percentage * period)
+        current_time = timezone.now()
+        period = (current_time.year - self.start_time.year)
+        decimal_percentage = self.percentage / 100
+        return self.value * (1 + decimal_percentage) ** period  # returns total amount
 
 
 class Loss(models.Model):
@@ -86,7 +88,10 @@ class Loss(models.Model):
     category = models.CharField(max_length=150)
     time = models.DateTimeField()
     user = models.ForeignKey(FinanceUser, on_delete=models.CASCADE)
+
     #loss tracking from credits?
+    def __str__(self):
+        return str(self.value)
 
 class Profit(models.Model):
     note = models.CharField(max_length=250, blank=True, null=True)
@@ -94,6 +99,9 @@ class Profit(models.Model):
     category = models.CharField(max_length=150)
     time = models.DateTimeField()
     user = models.ForeignKey(FinanceUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.value)
 
 class Deposit(models.Model):
     note = models.CharField(max_length=250, blank=True, null=True)
