@@ -5,12 +5,10 @@
   flex-direction: column;
   width: 100px;
   min-height: 100%;
-  justify-content: space-between;
   padding: 18px 0 48px 0;
   align-items: center;
   user-select: none;
   transition: width 0.5s ease;
-
   border-right: 1px solid rgba(26, 161, 64, 0.3);
 }
 
