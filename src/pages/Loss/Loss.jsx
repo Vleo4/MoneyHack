@@ -312,7 +312,7 @@ const Loss = () => {
                   }}
                 >
                   <p>Додати</p>
-                  <img src={images.Add} alt="Add" />
+                  <img src={images.AddLoss} alt="Add" />
                 </button>
               </div>
               <div className="profit-container-blocks">
@@ -389,7 +389,7 @@ const Loss = () => {
                               setTimeout(getData, 500);
                             }}
                             className="addIcon"
-                            src={isEdit ? images.Check : images.Add}
+                            src={isEdit ? images.CheckLoss : images.AddLoss}
                             alt="Add"
                           />
                         </>
@@ -410,7 +410,7 @@ const Loss = () => {
                           </p>
                           <div className="buttons">
                             <img
-                              src={images.Edit}
+                              src={images.EditLoss}
                               alt="Edit"
                               onClick={() => {
                                 handleAdd(index);
@@ -418,7 +418,7 @@ const Loss = () => {
                               }}
                             />
                             <img
-                              src={images.Delete}
+                              src={images.DeleteLoss}
                               onClick={() => {
                                 deleteLoss(d.id).then();
                                 setTimeout(getData, 500);

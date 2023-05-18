@@ -184,33 +184,28 @@ const Deposits = () => {
                   }`}
                   onClick={handleHistoryLink}
               >
-                <p>ЗАКРИТО</p>
+                <p>ДЕТАЛЬНО</p>
               </div>
             </div>
-            {!historyLink ? (
-                <div className="spend-block2">
-                  ЗАКРИТО
-                </div>
-            ) : (
-                <>
+            {!historyLink ?(<>
                   <div className="profit-container-labels deposit">
                     <p onClick={() => handleSortClick("Сума")}>
-                      Сума <img src={images.Arrows} alt="Arrows" />
+                      Сума <img src={images.Arrows} alt="Arrowss" />
                     </p>
                     <p onClick={() => handleSortClick("Категорія")}>
-                      Позиковано <img src={images.Arrows} alt="Arrows" />
+                      Позиковано <img src={images.Arrows} alt="Arrowss" />
                     </p>
                     <p onClick={() => handleSortClick("Нотатка")}>
-                      Нотатка <img src={images.Arrows} alt="Arrows" />
+                      Нотатка <img src={images.Arrows} alt="Arrowss" />
                     </p>
                     <p onClick={() => handleSortClick("Дата")}>
-                      Дата взяття <img src={images.Arrows} alt="Arrows" />
+                      Дата взяття <img src={images.Arrows} alt="Arrowss" />
                     </p>
                     <p onClick={() => handleSortClick("Дата")}>
-                      Дата гасіння <img src={images.Arrows} alt="Arrows" />
+                      Дата гасіння <img src={images.Arrows} alt="Arrowss" />
                     </p>
                     <p onClick={() => handleSortClick("Відсоток")}>
-                      Відсоток <img src={images.Arrows} alt="Arrows" />
+                      Відсоток <img src={images.Arrows} alt="Arrowss" />
                     </p>
                     <button
                         onClick={() => {
@@ -218,7 +213,90 @@ const Deposits = () => {
                         }}
                     >
                       <p>Додати</p>
-                      <img src={images.Add} alt="Add" />
+                      <img src={images.AddDeposit} alt="Add" />
+                    </button>
+                  </div>
+                  <div className="profit-container-blocks">
+                  {data.map((d, index) => {
+                    return (
+                        <div key={index} className="block deposit">
+                          <p>{parseInt(d.value)} ГРН</p>
+                          <p>{d.from_where}</p>
+                          <p>{d.note}</p>
+                          <p>
+                            {new Date(d.start_time).toLocaleDateString("uk-UA", {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </p>
+                          <p>
+                            {new Date(d.end_time).toLocaleDateString("uk-UA", {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </p>
+                          <p>{d.percentage}</p>
+                          <div className="buttons">
+                            <img
+                                src={images.CheckDeposit}
+                                onClick={() => {
+                                  closeDeposit(d.id).then();
+                                  setTimeout(getData, 500);
+                                }}
+                                alt="Delete"
+                            />
+                            <img
+                                src={images.EditDeposit}
+                                alt="Edit"
+                                onClick={() => {
+                                  handleAdd(index);
+                                  setId(d.id);
+                                }}
+                            />
+                            <img
+                                src={images.DeleteDeposit}
+                                onClick={() => {
+                                  deleteDeposit(d.id).then();
+                                  setTimeout(getData, 500);
+                                }}
+                                alt="Delete"
+                            />
+                          </div>
+                        </div>
+                    );
+                  })}
+                  </div>
+                </>
+            ) : (
+                <>
+                  <div className="profit-container-labels deposit">
+                    <p onClick={() => handleSortClick("Сума")}>
+                      Сума <img src={images.Arrows} alt="Arrowss" />
+                    </p>
+                    <p onClick={() => handleSortClick("Категорія")}>
+                      Позиковано <img src={images.Arrows} alt="Arrowss" />
+                    </p>
+                    <p onClick={() => handleSortClick("Нотатка")}>
+                      Нотатка <img src={images.Arrows} alt="Arrowss" />
+                    </p>
+                    <p onClick={() => handleSortClick("Дата")}>
+                      Дата взяття <img src={images.Arrows} alt="Arrowss" />
+                    </p>
+                    <p onClick={() => handleSortClick("Дата")}>
+                      Дата гасіння <img src={images.Arrows} alt="Arrowss" />
+                    </p>
+                    <p onClick={() => handleSortClick("Відсоток")}>
+                      Відсоток <img src={images.Arrows} alt="Arrowss" />
+                    </p>
+                    <button
+                        onClick={() => {
+                          handleAdd();
+                        }}
+                    >
+                      <p>Додати</p>
+                      <img src={images.AddDeposit} alt="Add" />
                     </button>
                   </div>
                   <div className="profit-container-blocks">
@@ -243,7 +321,7 @@ const Deposits = () => {
                                   <div className="category">
                                     <button onClick={toggleDropdown}>
                                       {selectedOption}{" "}
-                                      <img src={images.ArrowDown} alt="ArrowDown" />
+                                      <img src={images.ArrowDown} alt="ArrowsDown" />
                                     </button>
                                     <div
                                         className={`category-dropdown ${
@@ -307,7 +385,7 @@ const Deposits = () => {
                                         setTimeout(getData, 500);
                                       }}
                                       className="addIcon"
-                                      src={isEdit ? images.Check : images.Add}
+                                      src={isEdit ? images.CheckDeposit : images.AddDeposit}
                                       alt="Add"
                                   />
                                 </>
@@ -336,7 +414,7 @@ const Deposits = () => {
                                   <p>{d.percentage}</p>
                                   <div className="buttons">
                                     <img
-                                        src={images.Check}
+                                        src={images.CheckDeposit}
                                         onClick={() => {
                                           closeDeposit(d.id).then();
                                           setTimeout(getData, 500);
@@ -344,7 +422,7 @@ const Deposits = () => {
                                         alt="Delete"
                                     />
                                     <img
-                                        src={images.Edit}
+                                        src={images.EditDeposit}
                                         alt="Edit"
                                         onClick={() => {
                                           handleAdd(index);
@@ -352,7 +430,7 @@ const Deposits = () => {
                                         }}
                                     />
                                     <img
-                                        src={images.Delete}
+                                        src={images.DeleteDeposit}
                                         onClick={() => {
                                           deleteDeposit(d.id).then();
                                           setTimeout(getData, 500);

@@ -330,7 +330,7 @@ const Profit = () => {
                   }}
                 >
                   <p>Додати</p>
-                  <img src={images.Add} alt="Add" />
+                  <img src={images.AddProfit} alt="Add" />
                 </button>
               </div>
               <div className="profit-container-blocks">
@@ -415,7 +415,7 @@ const Profit = () => {
                               setTimeout(getData, 500);
                             }}
                             className="addIcon"
-                            src={isEdit ? images.Check : images.Add}
+                            src={isEdit ? images.CheckProfit : images.AddProfit}
                             alt="Add"
                           />
                         </>
@@ -436,7 +436,7 @@ const Profit = () => {
                           </p>
                           <div className="buttons">
                             <img
-                              src={images.Edit}
+                              src={images.EditProfit}
                               alt="Edit"
                               onClick={() => {
                                 handleAdd(index);
@@ -444,7 +444,7 @@ const Profit = () => {
                               }}
                             />
                             <img
-                              src={images.Delete}
+                              src={images.DeleteProfit}
                               onClick={() => {
                                 deleteProfit(d.id).then();
                                 setTimeout(getData, 500);
