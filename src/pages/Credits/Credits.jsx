@@ -23,6 +23,7 @@ const Credits = () => {
     setIsLoading(true);
     const profit = await getCredit();
     setData(profit);
+    console.log(profit);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -57,7 +58,7 @@ const Credits = () => {
     console.log(index)
     if (index !== undefined) {
       setIsEdit(true);
-      setSelectedOption(data[index].category);
+      setSelectedOption(data[index].from_where);
       setMoney(parseInt(data[index].value));
       setNote(data[index].note);
       setStartDate(data[index].start_time.slice(0, 10));
@@ -108,8 +109,8 @@ const Credits = () => {
         break;
       case "Категорія":
         filteredData.sort((a, b) => {
-          const categoryA = a.category;
-          const categoryB = b.category;
+          const categoryA = a.from_where;
+          const categoryB = b.from_where;
           return sortDirection === "asc"
             ? categoryA.localeCompare(categoryB)
             : categoryB.localeCompare(categoryA);
@@ -124,12 +125,24 @@ const Credits = () => {
             : noteB.localeCompare(noteA);
         });
         break;
-      case "Дата":
+      case "Дата взяття":
         filteredData.sort((a, b) => {
-          const dateA = new Date(a.time);
-          const dateB = new Date(b.time);
+          const dateA = new Date(a.start_time);
+          const dateB = new Date(b.start_time);
           return sortDirection === "asc" ? dateA - dateB : dateB - dateA;
         });
+        break;
+      case "Дата гасіння":
+        filteredData.sort((a, b) => {
+          const dateA = new Date(a.end_time);
+          const dateB = new Date(b.end_time);
+          return sortDirection === "asc" ? dateA - dateB : dateB - dateA;
+        });
+        break;
+      case "Відсоток":
+        filteredData.sort((a, b) =>
+        sortDirection === "asc" ? a.percentage - b.percentage : b.percentage - a.percentage
+      );
         break;
     }
     setData([...filteredData]);
@@ -198,10 +211,10 @@ const Credits = () => {
             <p onClick={() => handleSortClick("Нотатка")}>
               Нотатка <img src={images.Arrows} alt="Arrows" />
             </p>
-            <p onClick={() => handleSortClick("Дата")}>
+            <p onClick={() => handleSortClick("Дата взяття")}>
               Дата взяття <img src={images.Arrows} alt="Arrows" />
             </p>
-            <p onClick={() => handleSortClick("Дата")}>
+            <p onClick={() => handleSortClick("Дата гасіння")}>
               Дата гасіння <img src={images.Arrows} alt="Arrows" />
             </p>
             <p onClick={() => handleSortClick("Відсоток")}>
@@ -355,7 +368,7 @@ const Credits = () => {
                               setEndDate();
                               setPercent();
                               handleAdd();
-                              setTimeout(getData, 500);
+                              setTimeout(getData, 1000);
                             }}
                             className="addIcon"
                             src={isEdit ? images.CheckCredit : images.AddCredit}

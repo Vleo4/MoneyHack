@@ -475,6 +475,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-width: 1024px) {
+  .profit-wrapper {
+    margin-top: 24px;
+  }
+
   .block.credits,
   .block.deposit {
     grid-template-columns: 1fr;

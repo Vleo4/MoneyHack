@@ -386,7 +386,7 @@ const Loss = () => {
                                 setDate();
                               }
                               handleAdd();
-                              setTimeout(getData, 500);
+                              setTimeout(getData, 1000);
                             }}
                             className="addIcon"
                             src={isEdit ? images.CheckLoss : images.AddLoss}

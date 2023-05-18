@@ -46,6 +46,7 @@ const Sidebar = () => {
       onClick={handleSidebarClick}
       ref={sidebarRef}
     >
+      
       <div className="sidebar-wrapper">
         <div className="sidebar-profile">
           <img

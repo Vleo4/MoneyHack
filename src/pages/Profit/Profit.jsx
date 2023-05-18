@@ -412,7 +412,7 @@ const Profit = () => {
                                 setDate();
                               }
                               handleAdd();
-                              setTimeout(getData, 500);
+                              setTimeout(getData, 1000);
                             }}
                             className="addIcon"
                             src={isEdit ? images.CheckProfit : images.AddProfit}
