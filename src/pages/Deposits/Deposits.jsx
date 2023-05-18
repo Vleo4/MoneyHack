@@ -36,9 +36,10 @@ const Deposits = () => {
     }
   };
   const handlePercent = (event) => {
-    const value = event.target.value.replace(/[^\d]/g, "");
-    if (value.length <= 12) {
-      setPercent(value);
+    const inputPercent = event.target.value;
+    const regexPattern = /^\d{0,2}(?:\.\d{0,3})?$/;
+    if (regexPattern.test(inputPercent) || inputPercent === '') {
+      setPercent(inputPercent);
     }
   };
   const handleNote = (event) => {
@@ -59,8 +60,8 @@ const Deposits = () => {
       setSelectedOption(data[index].category);
       setMoney(parseInt(data[index].value));
       setNote(data[index].note);
-      setStartDate(data[index].time.slice(0, 10));
-      setEndDate(data[index].time.slice(0, 10));
+      setStartDate(data[index].start_time.slice(0, 10));
+      setEndDate(data[index].end_time.slice(0, 10));
       setPercent(data[index].percentage);
     } else {
       setIsEdit(false);
@@ -184,7 +185,7 @@ const Deposits = () => {
                   }`}
                   onClick={handleHistoryLink}
               >
-                <p>Детально</p>
+                <p>Закрито</p>
               </div>
             </div>
             {!historyLink ?(<>
@@ -207,65 +208,37 @@ const Deposits = () => {
                     <p onClick={() => handleSortClick("Відсоток")}>
                       Відсоток <img src={images.Arrows} alt="Arrowss" />
                     </p>
-                    <button
-                        onClick={() => {
-                          handleAdd();
-                        }}
-                    >
-                      <p>Додати</p>
-                      <img src={images.AddDeposit} alt="Add" />
-                    </button>
+                    <p onClick={() => handleSortClick("Відсоток")}>
+                     Профіт <img src={images.Arrows} alt="Arrowss" />
+                    </p>
                   </div>
                   <div className="profit-container-blocks">
                   {data.map((d, index) => {
-                    return (
-                        <div key={index} className="block deposit">
-                          <p>{parseInt(d.value)} ГРН</p>
-                          <p>{d.from_where}</p>
-                          <p>{d.note}</p>
-                          <p>
-                            {new Date(d.start_time).toLocaleDateString("uk-UA", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })}
-                          </p>
-                          <p>
-                            {new Date(d.end_time).toLocaleDateString("uk-UA", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })}
-                          </p>
-                          <p>{d.percentage}</p>
-                          <div className="buttons">
-                            <img
-                                src={images.CheckDeposit}
-                                onClick={() => {
-                                  closeDeposit(d.id).then();
-                                  setTimeout(getData, 500);
-                                }}
-                                alt="Delete"
-                            />
-                            <img
-                                src={images.EditDeposit}
-                                alt="Edit"
-                                onClick={() => {
-                                  handleAdd(index);
-                                  setId(d.id);
-                                }}
-                            />
-                            <img
-                                src={images.DeleteDeposit}
-                                onClick={() => {
-                                  deleteDeposit(d.id).then();
-                                  setTimeout(getData, 500);
-                                }}
-                                alt="Delete"
-                            />
+                    if(d.is_closed) {
+                      return (
+                          <div key={index} className="block deposit">
+                            <p>{parseInt(d.value)} ГРН</p>
+                            <p>{d.from_where}</p>
+                            <p>{d.note}</p>
+                            <p>
+                              {new Date(d.start_time).toLocaleDateString("uk-UA", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                              })}
+                            </p>
+                            <p>
+                              {new Date(d.end_time).toLocaleDateString("uk-UA", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                              })}
+                            </p>
+                            <p>{d.percentage}%</p>
+                            <p>{d.profit} ГРН</p>
                           </div>
-                        </div>
-                    );
+                      );
+                    }
                   })}
                   </div>
                 </>
@@ -362,7 +335,7 @@ const Deposits = () => {
                                   <input
                                       type="text"
                                       value={percent}
-                                      onChange={(e) => {
+                                  onChange={(e) => {
                                         handlePercent(e);
                                       }}
                                   />
@@ -392,54 +365,56 @@ const Deposits = () => {
                               </div>
                           )}
                           {data.map((d, index) => {
-                            return (
-                                <div key={index} className="block deposit">
-                                  <p>{parseInt(d.value)} ГРН</p>
-                                  <p>{d.from_where}</p>
-                                  <p>{d.note}</p>
-                                  <p>
-                                    {new Date(d.start_time).toLocaleDateString("uk-UA", {
-                                      day: "numeric",
-                                      month: "long",
-                                      year: "numeric",
-                                    })}
-                                  </p>
-                                  <p>
-                                    {new Date(d.end_time).toLocaleDateString("uk-UA", {
-                                      day: "numeric",
-                                      month: "long",
-                                      year: "numeric",
-                                    })}
-                                  </p>
-                                  <p>{d.percentage}%</p>
-                                  <div className="buttons">
-                                    <img
-                                        src={images.CheckDeposit}
-                                        onClick={() => {
-                                          closeDeposit(d.id).then();
-                                          setTimeout(getData, 500);
-                                        }}
-                                        alt="Delete"
-                                    />
-                                    <img
-                                        src={images.EditDeposit}
-                                        alt="Edit"
-                                        onClick={() => {
-                                          handleAdd(index);
-                                          setId(d.id);
-                                        }}
-                                    />
-                                    <img
-                                        src={images.DeleteDeposit}
-                                        onClick={() => {
-                                          deleteDeposit(d.id).then();
-                                          setTimeout(getData, 500);
-                                        }}
-                                        alt="Delete"
-                                    />
+                            if(!d.is_closed) {
+                              return (
+                                  <div key={index} className="block deposit">
+                                    <p>{parseInt(d.value)} ГРН</p>
+                                    <p>{d.from_where}</p>
+                                    <p>{d.note}</p>
+                                    <p>
+                                      {new Date(d.start_time).toLocaleDateString("uk-UA", {
+                                        day: "numeric",
+                                        month: "long",
+                                        year: "numeric",
+                                      })}
+                                    </p>
+                                    <p>
+                                      {new Date(d.end_time).toLocaleDateString("uk-UA", {
+                                        day: "numeric",
+                                        month: "long",
+                                        year: "numeric",
+                                      })}
+                                    </p>
+                                    <p>{d.percentage}%</p>
+                                    <div className="buttons">
+                                      <img
+                                          src={images.CheckDeposit}
+                                          onClick={() => {
+                                            closeDeposit(d.id).then();
+                                            setTimeout(getData, 500);
+                                          }}
+                                          alt="Delete"
+                                      />
+                                      <img
+                                          src={images.EditDeposit}
+                                          alt="Edit"
+                                          onClick={() => {
+                                            handleAdd(index);
+                                            setId(d.id);
+                                          }}
+                                      />
+                                      <img
+                                          src={images.DeleteDeposit}
+                                          onClick={() => {
+                                            deleteDeposit(d.id).then();
+                                            setTimeout(getData, 500);
+                                          }}
+                                          alt="Delete"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                            );
+                              );
+                            }
                           })}
                         </>
                     )}
