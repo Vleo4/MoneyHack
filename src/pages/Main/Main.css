@@ -246,7 +246,7 @@
 
 .spend-block-text_data.loss:hover {
   background: rgba(209, 35, 35, 0.3);
-  
+
 }
 .spend-block-text_data.loss:hover p{
   color: #d12323;
@@ -258,7 +258,7 @@
 
 .spend-block-text_data:hover p {
   color: #88ffb0;
-  
+
 }
 
 .profit-block-text_data:hover p {
@@ -482,4 +482,12 @@
     font-size: 18px;
     line-height: 22px;
   }
+}
+.loading-screen2 {
+  position: relative;
+  height: 1000%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

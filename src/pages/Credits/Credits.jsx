@@ -35,9 +35,10 @@ const Credits = () => {
     }
   };
   const handlePercent = (event) => {
-    const value = event.target.value.replace(/[^\d]/g, "");
-    if (value.length <= 12) {
-      setPercent(value);
+    const inputPercent = event.target.value;
+    const regexPattern = /^\d{0,2}(?:\.\d{0,3})?$/;
+    if (regexPattern.test(inputPercent) || inputPercent === '') {
+      setPercent(inputPercent);
     }
   };
   const handleNote = (event) => {
