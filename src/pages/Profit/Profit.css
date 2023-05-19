@@ -38,7 +38,7 @@
 
     color: #d12323;
   }
-  .block input[type="text"]:first-child::-webkit-input-placeholder {
+  .block input[type="text"]::-webkit-input-placeholder {
     color: rgba(161, 26, 26, 0.3);
   }
   .profit-container-labels button {
@@ -77,7 +77,7 @@
     color: #c3d123;
   }
 
-  .block.credits input[type="text"]:first-child::-webkit-input-placeholder {
+  .block.credits input[type="text"]::-webkit-input-placeholder {
     color: rgba(195, 209, 35, 0.3);
   }
   .profit-container-labels button {
@@ -116,7 +116,7 @@
     color: #2393d1;
   }
 
-  .block input[type="text"]:first-child::-webkit-input-placeholder {
+  .block input[type="text"]::-webkit-input-placeholder {
     color: rgba(35, 147, 209, 0.3);
   }
   .profit-container-labels button {
