@@ -26,7 +26,11 @@ const Register = () => {
   const [isPass, setIsPass] = useState(true);
   const handleLoginChange = (event) => {
     setIsLogin(true);
-    setLogin(event.target.value);
+    const value = event.target.value;
+    console.log(value.includes(' '))
+    if (!value.includes(' ')) {
+      setLogin(value);
+    }
   };
   const handlePassChange = (event) => {
     setIsPass(true);
@@ -128,6 +132,7 @@ const Register = () => {
                 onClick={() => {
                   setIsActiveLogin(false);
                 }}
+                value={login}
                 type="text"
                 placeholder="Username"
               />

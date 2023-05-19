@@ -436,7 +436,8 @@ const Profit = () => {
                           </p>
                           <div className="buttons">
                             <img
-                              src={images.EditProfit}
+                                title="Редагувати"
+                                src={images.EditProfit}
                               alt="Edit"
                               onClick={() => {
                                 handleAdd(index);
@@ -444,7 +445,8 @@ const Profit = () => {
                               }}
                             />
                             <img
-                              src={images.DeleteProfit}
+                                title="Видалити"
+                                src={images.DeleteProfit}
                               onClick={() => {
                                 deleteProfit(d.id).then();
                                 setTimeout(getData, 500);

@@ -410,7 +410,8 @@ const Loss = () => {
                           </p>
                           <div className="buttons">
                             <img
-                              src={images.EditLoss}
+                                title="Редагувати"
+                                src={images.EditLoss}
                               alt="Edit"
                               onClick={() => {
                                 handleAdd(index);
@@ -418,7 +419,8 @@ const Loss = () => {
                               }}
                             />
                             <img
-                              src={images.DeleteLoss}
+                                title="Видалити"
+                                src={images.DeleteLoss}
                               onClick={() => {
                                 deleteLoss(d.id).then();
                                 setTimeout(getData, 500);
