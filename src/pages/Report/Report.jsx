@@ -159,10 +159,7 @@ const Report = () => {
                       value={year}
                       onChange={(e) => {
                         const newValue = e.target.value;
-                        if (newValue <= 9999&&newValue>=0) {
-                          setYear(e.target.value);
-                        }
-                      }}
+                        if (newValue <= 9999&&newValue>=0) {setYear(e.target.value);}}}
                     />
                     <h3>рік</h3>
                   </div>
