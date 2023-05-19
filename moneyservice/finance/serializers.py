@@ -47,7 +47,6 @@ class CloseCreditSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.is_closed = not instance.is_closed
-        instance.save()
 
         if instance.is_closed:
             loss = Loss.objects.create(

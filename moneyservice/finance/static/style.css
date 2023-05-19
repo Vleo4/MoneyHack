@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+body {
+  min-height: 100vh;
+  background: #0E130F;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+.list_container{
+  margin: 64px;
+}
+.logo{
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+}
+.underlogo{
+  font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 17px;
+padding-bottom: 50px;
+}
+.nav{
+  background: #000000;
+  width: 50vw;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 32px;
+  justify-content: space-between;
+}
+.nav_info{
+  display: flex;
+  gap: 8px;
+  padding-left: 10px;
+}
+.nav p{
+  font-family: 'Consolas';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+}
+.main{
+  width: 50vw;
+  background: #0C0C0C;
+  
+}
+.main {
+  color: #23D154;
+  font-family: 'Consolas';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+.main a{
+  text-decoration: none;
+  color: #23D154;
+  padding-left: 1%;
+  width: 100%;
+}
+.main p{
+  padding-left: 1%;
+}
+.text{
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 10px;
+}
+.nav_menu{
+  display: flex;
+  gap: 35px;
+  padding-right: 20px;
+}
+.container{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.tooltiptext {
+  display: none;
+  opacity: 0;
+  color: #fff;
+  font-family: 'Consolas';
+  text-align: center;
+  /* Position the tooltip */
+
+}
+.main a:hover .tooltiptext {
+ display: flex;
+ opacity: 1;
+ transition: opacity 2s ease;
+}

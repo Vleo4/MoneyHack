@@ -109,3 +109,6 @@ class UpdateLossAPIView(generics.UpdateAPIView):
 class DeleteLossAPIView(generics.DestroyAPIView):
     queryset = Loss.objects.all()
     permission_classes = [IsOwnerOrReadOnly]
+
+def index(request):
+    return render(request, 'index.html')

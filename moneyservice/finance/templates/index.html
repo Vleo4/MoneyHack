@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <style type="text/css">
+        @font-face {
+            font-family: "Montserrat";
+            src: url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap) format("truetype");
+        }
+        .list_container { 
+            font-family: "Montserrat", sans-serif;
+        }
+        </style>
+        <title>Api</title>
+    </head>
+    <body>
+        <div class="background">
+            <div class="list_container">
+                <p class="logo">MONEYHACKAPI</p>
+                <p class="underlogo">Володійте своїми фінансами</p>
+                <p class="underlogo">API написане на Django Rest Framework та використовує JWT токени для авторизації</p>
+
+                <div class="console">
+                    <div class="nav">
+                        <div class="nav_info">
+                            <p><img src="{% static 'console.svg' %}" alt=""></p>
+                            <p>C:\Windows\System32\MoneyHack.exe</p>
+                        </div>
+                        <div class="nav_menu">
+                            <img src="{% static 'riska.svg' %}" alt="">
+                            <img src="{% static 'kvadrat.svg' %}" alt="">
+                            <img src="{% static 'krestik.svg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="main">
+                        <p style="padding-bottom: 10px; margin:0px;
+                            padding-top:8px;">API
+                            написане за допомогою Django Rest Framework</p>
+                        <p class="text">
+                            Доступні ендпоінти:
+                        </p>
+                        <div class="container">
+                            <a
+                                href="https://moneyhack.brainstormingapplication.com/api/credits/">api/credits/
+                                [GET] <span class="tooltiptext">Get all user credits(Access token required)</span></a>
+                            <a
+                                href="https://moneyhack.brainstormingapplication.com/api/credit/create/">api/credit/create/
+                                [POST]<span class="tooltiptext">Creare credit(Access token required)</span></a>
+                            <a
+                                href="https://moneyhack.brainstormingapplication.com/api/credit/update/">api/credit/update/<int:pk>/
+                                    [PUT]<span class="tooltiptext">Edit credit(Access token required)</span></a>
+                                <a
+                                    href="https://moneyhack.brainstormingapplication.com/api/credit/close/">api/credit/close/<int:pk>/
+                                        [PUT]<span class="tooltiptext">Close credit(Access token required)</span></a>
+                                    <a
+                                        href="https://moneyhack.brainstormingapplication.com/api/credit/destroy/">api/credit/destroy/<int:pk>/
+                                            [DEL]<span class="tooltiptext">Delete credit(Access token required)</span></a>
+                                        <a
+                                            href="https://moneyhack.brainstormingapplication.com/api/deposits/">api/deposits/
+                                            [GET]<span class="tooltiptext">Get all user deposits(Access token required)</span></a>
+                                        <a
+                                            href="https://moneyhack.brainstormingapplication.com/api/deposit/create/">api/deposit/create/
+                                            [POST]<span class="tooltiptext">Create deposit(Access token required)</span></a>
+                                        <a
+                                            href="https://moneyhack.brainstormingapplication.com/api/deposit/update/">api/deposit/update/<int:pk>/
+                                                [PUT]<span class="tooltiptext">Edit deposit(Access token required)</span></a>
+                                            <a
+                                                href="https://moneyhack.brainstormingapplication.com/api/deposit/close/">api/deposit/close/<int:pk>/
+                                                    [PUT]<span class="tooltiptext">Close deposit(Access token required)</span></a>
+                                                <a
+                                                    href="https://moneyhack.brainstormingapplication.com/api/deposit/destroy/">api/deposit/destroy/<int:pk>/
+                                                        [DEL]<span class="tooltiptext">Delete deposit(Access token required)</span></a>
+                                                    <a
+                                                        href="https://moneyhack.brainstormingapplication.com/api/profits/">api/profits/
+                                                        [GET]<span class="tooltiptext">Get all user profits(Access token required)</span></a>
+                                                    <a
+                                                        href="https://moneyhack.brainstormingapplication.com/api/profit/create/">api/profit/create/
+                                                        [POST]<span class="tooltiptext">Create profit(Access token required)</span></a>
+                                                    <a
+                                                        href="https://moneyhack.brainstormingapplication.com/api/profit/update/">api/profit/update/<int:pk>/
+                                                            [PUT]<span class="tooltiptext">Edit profit(Access token required)</span></a>
+                                                        <a
+                                                            href="https://moneyhack.brainstormingapplication.com/api/profit/destroy/">api/profit/destroy/<int:pk>/
+                                                                [DEL]<span class="tooltiptext">Delete profit(Access token required)</span></a>
+                                                            <a
+                                                                href="https://moneyhack.brainstormingapplication.com/api/looses/">api/looses/
+                                                                [GET]<span class="tooltiptext">Get all user loses(Access token required)</span></a>
+                                                            <a
+                                                                href="https://moneyhack.brainstormingapplication.com/api/lose/create/">api/lose/create/
+                                                                [POST]<span class="tooltiptext">Create lose(Access token required)</span></a>
+                                                            <a
+                                                                href="https://moneyhack.brainstormingapplication.com/api/lose/update/">api/lose/update/<int:pk>/
+                                                                    [PUT]<span class="tooltiptext">Edit lose(Access token required)</span></a>
+                                                                <a
+                                                                    href="https://moneyhack.brainstormingapplication.com/api/lose/destroy">api/lose/destroy/<int:pk>/
+                                                                        [DEL]<span class="tooltiptext">Delete lose(Access token required)</span></a>
+                                                                    <a
+                                                                        href="https://moneyhack.brainstormingapplication.com/api/register/">api/register/
+                                                                        [POST]<span class="tooltiptext">Register</span></a>
+                                                                    <a
+                                                                        href="https://moneyhack.brainstormingapplication.com/api/token/">api/token/
+                                                                        [name='login']
+                                                                        [POST]<span class="tooltiptext">Login</span></a>
+                                                                    <a
+                                                                        href="https://moneyhack.brainstormingapplication.com/api/token/refresh/">api/token/refresh/
+                                                                        [POST]<span class="tooltiptext">Refresh JWT token</span></a>
+                                                                </div>
+                                                                <p style="
+                                                                    padding-bottom:
+                                                                    60px;"> Для
+                                                                    продовження
+                                                                    натисніть
+                                                                    будь-яку
+                                                                    клавішу...</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </body>
+                                        </html>

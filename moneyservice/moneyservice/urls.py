@@ -5,6 +5,7 @@ from finance.auth_views import *
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
+    path('', index),
     path('admin/', admin.site.urls),
     path('api/credits/', CreditListAPIView.as_view()),
     path('api/credit/create/', CreateCreditAPIView.as_view()),
