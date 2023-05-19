@@ -370,6 +370,10 @@ const Loss = () => {
                           />
                           <img
                             onClick={() => {
+                              if(!selectedOption&&!money&&!note&&!date){
+                                alert("ЗАПОВНІТЬ УСІ ПОЛЯ");
+                              }
+                              else{
                               if (isEdit) {
                                 editLoss(note, money, selectedOption, date, id);
                                 setIsEdit(false);
@@ -387,7 +391,7 @@ const Loss = () => {
                               }
                               handleAdd();
                               setTimeout(getData, 1000);
-                            }}
+                            }}}
                             className="addIcon"
                             src={isEdit ? images.CheckLoss : images.AddLoss}
                             alt="Add"
@@ -409,7 +413,8 @@ const Loss = () => {
                             })}
                           </p>
                           <div className="buttons">
-                            <img
+                            {!d.category==='Погашення кредиту'&&
+                                <img
                                 title="Редагувати"
                                 src={images.EditLoss}
                               alt="Edit"
@@ -418,6 +423,7 @@ const Loss = () => {
                                 setId(d.id);
                               }}
                             />
+                            }
                             <img
                                 title="Видалити"
                                 src={images.DeleteLoss}
