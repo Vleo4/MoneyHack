@@ -19,6 +19,7 @@ const Credits = () => {
   const [percent,setPercent] =useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState();
+  const [category,setCategory] =useState();
   const getData = async () => {
     setIsLoading(true);
     const profit = await getCredit();
@@ -47,7 +48,11 @@ const Credits = () => {
       setNote(event.target.value);
     }
   };
-
+  const handleCategory = (event) => {
+    if (event.target.value.length <= 50) {
+      setCategory(event.target.value);
+    }
+  };
   const handleHistoryLink = () => {
     setHistoryLink(!historyLink);
   };
@@ -58,7 +63,7 @@ const Credits = () => {
     console.log(index)
     if (index !== undefined) {
       setIsEdit(true);
-      setSelectedOption(data[index].from_where);
+      setCategory(data[index].from_where);
       setMoney(parseInt(data[index].value));
       setNote(data[index].note);
       setStartDate(data[index].start_time.slice(0, 10));
@@ -66,7 +71,7 @@ const Credits = () => {
       setPercent(data[index].percentage);
     } else {
       setIsEdit(false);
-      setSelectedOption("Інше");
+      setCategory();
       setMoney();
       setNote();
       setStartDate();
@@ -74,16 +79,6 @@ const Credits = () => {
       setPercent();
     }
     setIsAdd(!isAdd);
-  };
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const [selectedOption, setSelectedOption] = useState("Інше");
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    setIsDropdownOpen(false);
   };
 
   const [sortOption, setSortOption] = useState("Сума");
@@ -304,26 +299,13 @@ const Credits = () => {
                               handleNumber(e);
                             }}
                           />
-                          <div className="category">
-                            <button onClick={toggleDropdown}>
-                              {selectedOption}{" "}
-                              <img src={images.ArrowDown} alt="ArrowsDown" />
-                            </button>
-                            <div
-                              className={`category-dropdown ${
-                                isDropdownOpen ? "open" : ""
-                              }`}
-                            >
-                              {categories.map((cat) => (
-                                <h6
-                                  onClick={() => handleOptionClick(cat.cat)}
-                                  key={cat.cat}
-                                >
-                                  {cat.cat}
-                                </h6>
-                              ))}
-                            </div>
-                          </div>
+                          <input
+                              type="text"
+                              value={category}
+                              onChange={(e) => {
+                                handleCategory(e);
+                              }}
+                          />
                           <input
                             type="text"
                             value={note}
@@ -355,13 +337,13 @@ const Credits = () => {
                           <img
                             onClick={() => {
                               if (isEdit) {
-                                editCredit(note, money, selectedOption, startDate,endDate,percent, id);
+                                editCredit(note, money, category, startDate,endDate,percent, id);
 
                               } else {
-                                newCredit(note, money, selectedOption, startDate,endDate,percent, id);
+                                newCredit(note, money, category, startDate,endDate,percent, id);
                               }
                               setIsEdit(false);
-                              setSelectedOption("Інше");
+                              setCategory();
                               setMoney();
                               setNote();
                               setStartDate();
@@ -401,6 +383,7 @@ const Credits = () => {
                               <p>{d.percentage}%</p>
                               <div className="buttons">
                                 <img
+                                    title="Закрити кредит"
                                     src={images.CheckCredit}
                                     onClick={() => {
                                       closeCredit(d.id).then();
@@ -409,6 +392,7 @@ const Credits = () => {
                                     alt="Delete"
                                 />
                                 <img
+                                    title="Редагувати"
                                     src={images.EditCredit}
                                     alt="Edit"
                                     onClick={() => {
@@ -417,6 +401,7 @@ const Credits = () => {
                                     }}
                                 />
                                 <img
+                                    title="Видалити"
                                     src={images.DeleteCredit}
                                     onClick={() => {
                                       deleteCredit(d.id).then();

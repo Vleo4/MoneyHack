@@ -205,7 +205,7 @@
 }
 .profit-container-labels.credits,
 .profit-container-labels.deposit {
-  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
 }
 
 .profit-container-labels button {
@@ -280,7 +280,7 @@
 }
 .block.credits,
 .block.deposit {
-  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
 }
 
 .block p:first-child {
@@ -380,7 +380,7 @@
   font-family: var(--font-mont);
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 16px;
   color: #23d154;
 }
 
@@ -683,9 +683,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     gap: 10px;
   }
 }
-.block.credits input[type="text"] {
+.block.credits input[type="text"],
+.block.deposit input[type="text"] {
   max-width: 150px;
 }
-.block.credits input[type="text"]:first-child {
-  max-width: 100px;
+.block.credits input[type="text"]:first-child,
+.block.deposit input[type="text"]:first-child {
+  max-width: 80px;
 }

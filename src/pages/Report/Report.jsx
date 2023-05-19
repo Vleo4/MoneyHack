@@ -158,7 +158,10 @@ const Report = () => {
                       type="number"
                       value={year}
                       onChange={(e) => {
-                        setYear(e.target.value);
+                        const newValue = e.target.value;
+                        if (newValue <= 9999&&newValue>=0) {
+                          setYear(e.target.value);
+                        }
                       }}
                     />
                     <h3>рік</h3>
@@ -185,7 +188,10 @@ const Report = () => {
                       className="edit-cum"
                       value={year2}
                       onChange={(e) => {
-                        setYear2(e.target.value);
+                        const newValue = e.target.value;
+                        if (newValue <= 9999&&newValue>=0) {
+                          setYear2(e.target.value);
+                        }
                       }}
                     />
                     <h3>рік</h3>
