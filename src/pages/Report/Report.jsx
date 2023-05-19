@@ -134,6 +134,57 @@ const Report = () => {
   useEffect(() => {
     updateChislo();
   }, [year, year2, dataLineChart, dataLineChart2]);
+
+  const [sortOption, setSortOption] = useState("Сума");
+  const [sortDirection, setSortDirection] = useState("desc");
+  const handleSortClick = (option) => {
+    if (option === sortOption) {
+      // Якщо натиснуто на той самий елемент, змінюємо напрямок сортування
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      // Якщо натиснуто на інший елемент, встановлюємо нову опцію сортування та напрямок "desc"
+      setSortOption(option);
+      setSortDirection("desc");
+    }
+  };
+
+  useEffect(() => {
+    let filteredData = dataCredit;
+    switch (sortOption) {
+      case "Сума":
+        filteredData.sort((a, b) =>
+          sortDirection === "asc" ? a.value - b.value : b.value - a.value
+        );
+        break;
+      case "Позиковано":
+        filteredData.sort((a, b) => {
+          const categoryA = a.from_where;
+          const categoryB = b.from_where;
+          return sortDirection === "asc"
+            ? categoryA.localeCompare(categoryB)
+            : categoryB.localeCompare(categoryA);
+        });
+        break;
+      case "Нотатка":
+        filteredData.sort((a, b) => {
+          const noteA = a.note;
+          const noteB = b.note;
+          return sortDirection === "asc"
+            ? noteA.localeCompare(noteB)
+            : noteB.localeCompare(noteA);
+        });
+        break;
+      case "Дата взяття":
+        filteredData.sort((a, b) => {
+          const dateA = new Date(a.start_time);
+          const dateB = new Date(b.start_time);
+          return sortDirection === "asc" ? dateA - dateB : dateB - dateA;
+        });
+        break;
+    }
+    setDataCredit([...filteredData]);
+  }, [sortOption, sortDirection]);
+
   return (
     <div className="report">
       <div className="report-wrapper">
@@ -209,16 +260,16 @@ const Report = () => {
                 <h2>Непогашені кредити</h2>
                 <div className="creditBlock-wrapper">
                   <div className="creditBlock-buttons">
-                    <p>
+                    <p onClick={() => handleSortClick("Сума")}>
                       Сума <img src={images.Arrows} alt="Arrows" />
                     </p>
-                    <p>
+                    <p onClick={() => handleSortClick("Позиковано")}>
                       Позиковано <img src={images.Arrows} alt="Arrows" />
                     </p>
-                    <p>
+                    <p onClick={() => handleSortClick("Нотатка")}>
                       Нотатка <img src={images.Arrows} alt="Arrows" />
                     </p>
-                    <p>
+                    <p onClick={() => handleSortClick("Дата взяття")}>
                       Дата взяття <img src={images.Arrows} alt="Arrows" />
                     </p>
                   </div>
