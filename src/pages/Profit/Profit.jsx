@@ -390,6 +390,10 @@ const Profit = () => {
                           />
                           <img
                             onClick={() => {
+                              if(!selectedOption&&!money&&!note&&!date){
+                                alert("ЗАПОВНІТЬ УСІ ПОЛЯ");
+                              }
+                              else {
                               if (isEdit) {
                                 editProfit(
                                   note,
@@ -413,7 +417,7 @@ const Profit = () => {
                               }
                               handleAdd();
                               setTimeout(getData, 1000);
-                            }}
+                            }}}
                             className="addIcon"
                             src={isEdit ? images.CheckProfit : images.AddProfit}
                             alt="Add"
@@ -435,6 +439,7 @@ const Profit = () => {
                             })}
                           </p>
                           <div className="buttons">
+                            {!d.category==='Прибуток від депозиту'&&
                             <img
                                 title="Редагувати"
                                 src={images.EditProfit}
@@ -443,7 +448,7 @@ const Profit = () => {
                                 handleAdd(index);
                                 setId(d.id);
                               }}
-                            />
+                            />}
                             <img
                                 title="Видалити"
                                 src={images.DeleteProfit}

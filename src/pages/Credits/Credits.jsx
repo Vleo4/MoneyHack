@@ -215,14 +215,14 @@ const Credits = () => {
             <p onClick={() => handleSortClick("Відсоток")}>
               Відсоток <img src={images.Arrows} alt="Arrows" />
             </p>
-            <button
+            {historyLink&&<button
                 onClick={() => {
                   handleAdd();
                 }}
             >
               <p>Додати</p>
               <img src={images.AddCredit} alt="Add" />
-            </button>
+            </button>}
           </div>
           {!historyLink ? (
             <div className="profit-container-blocks">
@@ -250,22 +250,18 @@ const Credits = () => {
                         <p>{d.percentage}%</p>
                         <div className="buttons">
                           <img
+                              title="Відкрити кредит"
                               src={images.CheckCredit}
                               onClick={() => {
+                                setIsLoading(true);
                                 closeCredit(d.id).then();
                                 setTimeout(getData, 500);
+                                setIsLoading(false);
                               }}
                               alt="Delete"
                           />
                           <img
-                              src={images.EditCredit}
-                              alt="Edit"
-                              onClick={() => {
-                                handleAdd(index);
-                                setId(d.id);
-                              }}
-                          />
-                          <img
+                              title="Видалити кредит"
                               src={images.DeleteCredit}
                               onClick={() => {
                                 deleteCredit(d.id).then();
@@ -337,21 +333,26 @@ const Credits = () => {
                           />
                           <img
                             onClick={() => {
-                              if (isEdit) {
-                                editCredit(note, money, category, startDate,endDate,percent, id);
-
-                              } else {
-                                newCredit(note, money, category, startDate,endDate,percent, id);
+                              if(!category&&!money&&!note&&!startDate&&!endDate&&!percent){
+                                alert("ЗАПОВНІТЬ УСІ ПОЛЯ");
                               }
-                              setIsEdit(false);
-                              setCategory();
-                              setMoney();
-                              setNote();
-                              setStartDate();
-                              setEndDate();
-                              setPercent();
-                              handleAdd();
-                              setTimeout(getData, 1000);
+                              else {
+                                if (isEdit) {
+                                  editCredit(note, money, category, startDate, endDate, percent, id);
+
+                                } else {
+                                  newCredit(note, money, category, startDate, endDate, percent, id);
+                                }
+                                setIsEdit(false);
+                                setCategory();
+                                setMoney();
+                                setNote();
+                                setStartDate();
+                                setEndDate();
+                                setPercent();
+                                handleAdd();
+                                setTimeout(getData, 1000);
+                              }
                             }}
                             className="addIcon"
                             src={isEdit ? images.CheckCredit : images.AddCredit}
@@ -387,8 +388,10 @@ const Credits = () => {
                                     title="Закрити кредит"
                                     src={images.CheckCredit}
                                     onClick={() => {
+                                      setIsLoading(true);
                                       closeCredit(d.id).then();
                                       setTimeout(getData, 500);
+                                      setIsLoading(false);
                                     }}
                                     alt="Delete"
                                 />

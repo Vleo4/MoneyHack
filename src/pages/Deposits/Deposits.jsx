@@ -191,7 +191,7 @@ const Deposits = () => {
           </div>
           {!historyLink ? (
             <>
-              <div className="profit-container-labels deposit">
+              <div className="profit-container-labels deposit2">
                 <p onClick={() => handleSortClick("Сума")}>
                   Сума <img src={images.Arrows} alt="Arrowss" />
                 </p>
@@ -218,7 +218,7 @@ const Deposits = () => {
                 {data.map((d, index) => {
                   if (d.is_closed) {
                     return (
-                      <div key={index} className="block deposit">
+                      <div key={index} className="block deposit2">
                         <p>{parseInt(d.value)} ГРН</p>
                         <p>{d.from_where}</p>
                         <p>{d.note}</p>
@@ -238,6 +238,28 @@ const Deposits = () => {
                         </p>
                         <p>{d.percentage}%</p>
                         <p>{d.profit} ГРН</p>
+                        <div className="buttons">
+                          <img
+                              title="Відкрити депозит"
+                              src={images.CheckDeposit}
+                              onClick={() => {
+                                setIsLoading(true);
+                                closeDeposit(d.id).then();
+                                setTimeout(getData, 1000);
+                                setIsLoading(false);
+                              }}
+                              alt="Delete"
+                          />
+                          <img
+                              title="Видалити"
+                              src={images.DeleteDeposit}
+                              onClick={() => {
+                                deleteDeposit(d.id).then();
+                                setTimeout(getData, 500);
+                              }}
+                              alt="Delete"
+                          />
+                        </div>
                       </div>
                     );
                   }
@@ -331,6 +353,10 @@ const Deposits = () => {
                           />
                           <img
                             onClick={() => {
+                              if(!category&&!money&&!note&&!startDate&&!endDate&&!percent){
+                                alert("ЗАПОВНІТЬ УСІ ПОЛЯ");
+                              }
+                              else {
                               if (isEdit) {
                                 editDeposit(
                                   note,
@@ -362,6 +388,7 @@ const Deposits = () => {
                               handleAdd();
                               setTimeout(getData, 1000);
                             }}
+                          }
                             className="addIcon"
                             src={
                               isEdit ? images.CheckDeposit : images.AddDeposit
@@ -404,8 +431,10 @@ const Deposits = () => {
                                   title="Закрити депозит"
                                 src={images.CheckDeposit}
                                 onClick={() => {
+                                  setIsLoading(true);
                                   closeDeposit(d.id).then();
                                   setTimeout(getData, 1000);
+                                  setIsLoading(false);
                                 }}
                                 alt="Delete"
                               />
