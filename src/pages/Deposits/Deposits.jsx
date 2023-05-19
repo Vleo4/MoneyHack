@@ -296,6 +296,7 @@ const Deposits = () => {
                           <input
                               type="text"
                               value={category}
+                              placeholder="Куди"
                               onChange={(e) => {
                                 handleCategory(e);
                               }}

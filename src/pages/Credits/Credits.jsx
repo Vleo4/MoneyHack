@@ -302,6 +302,7 @@ const Credits = () => {
                           <input
                               type="text"
                               value={category}
+                              placeholder="Звідки"
                               onChange={(e) => {
                                 handleCategory(e);
                               }}
