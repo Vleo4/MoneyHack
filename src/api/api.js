@@ -2,7 +2,7 @@ import axios from "axios";
 import { getFromLocalStorage, saveToLocalStorage } from "./tokenStorage";
 import jwtDecode from "jwt-decode";
 
-const url = "http://moneyhackapi.satonteam.com/api/";
+const url = "https://moneyhackdevapi.satonteam.com/api/";
 const accessToken = getFromLocalStorage("ACCESS_TOKEN");
 const refreshToken = getFromLocalStorage("REFRESH_TOKEN");
 let token;
