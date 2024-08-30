@@ -1,22 +1,12 @@
 # :money_with_wings: MoneyHack
 
-### Високотехнологічний інструмент для персонального фінансового менеджменту, який вам допоможе краще контролювати свої прибутки, витрати, кредити та депозити. Шукали? Ви його віднайшли!!
+### MoneyHack is a modern platform where you can easily track and analyze your finances. Clear graphs and detailed reports will help you understand more about where your money goes and how you can optimize your spending. :chart:
 
-### MoneyHack сучасна платформа, де ви можете з легкістю відстежувати та аналізувати свої фінанси. Чіткі графіки та детальні звіти допоможуть вам більше зрозуміти, куди йдуть ваші гроші, і як ви можете оптимізувати свої витрати. :chart:
+###### However, it is important to note that we are not responsible for the accuracy of loan and deposit calculations. Our calculations are based on the data you provide and do not take into account factors such as specific contractual terms or inflation. We recommend that you contact your financial advisor or your bank directly for the most accurate information.
 
-###### Втім, важливо зазначити, що ми не несемо відповідальності за точність розрахунків кредитів та депозитів. Наші обчислення базуються на наданих вами даних та не враховують такі фактори, як умови конкретних договорів або інфляція. Ми рекомендуємо вам звертатися до фінансового радника або безпосередньо до вашого банку для отримання найбільш точної інформації.
+## :moneybag: Web site [MoneyHack](https://money-hack.vercel.app/).
 
-## :moneybag: Ось лінка на сервіс [MoneyHack](https://money-hack.vercel.app/).
-
-### Також у нас є MoneyHackAPI - власне API яке ви можете використовувати у ваших проєктах!
-### :moneybag: Ось лінка на API з документацією [MoneyHackAPI](https://moneyhack.brainstormingapplication.com/).
-### Вихідний код бекенду розміщений на вітці [back-vleo](https://github.com/Vleo4/MoneyHack/tree/back-vleo)
-### Як користуватися нашим сервісом?
-
-### 1. Реєструєтесь :wink:
-### 2. Насолоджуєтесь :smiling_face_with_three_hearts:
-
-### Стек технологій які використовувалися при розробці:
+### The stack of technologies used in the development:
 
 ### - Python (Django Rest Framework)
 ### - ReactJS
