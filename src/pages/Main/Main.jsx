@@ -232,7 +232,7 @@ const Main = () => {
         </div>
         <div className="footer">
           <img src={images.GitHub} alt="GitHub" />
-          <p>© Saton Team</p>
+          <p>© Money Hack Team</p>
         </div>
       </div>
     </>
