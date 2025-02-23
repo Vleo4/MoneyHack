@@ -40,89 +40,91 @@ const Main = () => {
 
   const spendData = [
     {
-      category: "Продукти",
+      category: "Groceries",
       value: 40,
     },
     {
-      category: "Кафе та ресторани",
+      category: "Cafes and Restaurants",
       value: 10,
     },
     {
-      category: "Інше",
+      category: "Other",
       value: 10,
     },
     {
-      category: "Розваги та спорт",
+      category: "Entertainment and Sports",
       value: 7.1,
     },
     {
-      category: "Поповнення мобільного",
+      category: "Mobile Top-up",
       value: 5.1,
     },
     {
-      category: "Медицина",
+      category: "Medicine",
       value: 5.1,
     },
     {
-      category: "Подорожі",
+      category: "Travel",
       value: 5.1,
     },
     {
-      category: "Таксі",
+      category: "Taxi",
       value: 5.1,
     },
     {
-      category: "Комунальні послуги",
+      category: "Utilities",
       value: 3.1,
     },
     {
-      category: "Одяг та взуття",
+      category: "Clothing and Footwear",
       value: 2.5,
     },
     {
-      category: "Кіно",
+      category: "Cinema",
       value: 2.1,
     },
     {
-      category: "Тварини",
+      category: "Pets",
       value: 1.4,
     },
     {
-      category: "Книги",
+      category: "Books",
       value: 0.9,
     },
-  ];
+];
 
-  const profitData = [
+const profitData = [
     {
-      category: "Заробітна плата",
+      category: "Salary",
       value: 31.6,
     },
     {
-      category: "Бізнес-прибуток",
+      category: "Business Profit",
       value: 29.4,
     },
     {
-      category: "Інвестиційний дохід",
+      category: "Investment Income",
       value: 9.3,
     },
     {
-      category: "Капітальний дохід",
+      category: "Capital Income",
       value: 8.7,
     },
     {
-      category: "Премії",
+      category: "Bonuses",
       value: 7,
     },
     {
-      category: "Продаж товарів",
+      category: "Product Sales",
       value: 7,
     },
     {
-      category: "Авторські винагороди",
+      category: "Royalties",
       value: 7,
     },
-  ];
+];
+
+
   useEffect(() => {
     const hoverArray = spendData.map(() => false);
     setHover(hoverArray);
@@ -135,8 +137,8 @@ const Main = () => {
   return (
     <>
       <div className="main-nav">
-        <Link to="/login" className="main-nav-item">Увійти</Link>
-        <Link to="/register" className="main-nav-item">Зареєструватися</Link>
+        <Link to="/login" className="main-nav-item">Login</Link>
+        <Link to="/register" className="main-nav-item">Sign up</Link>
       </div>
       <div className="main">
         <div className="main-header">
@@ -145,24 +147,21 @@ const Main = () => {
             <h1>HACK</h1>
           </div>
 
-          <h2>Володійте своїми фінансами</h2>
+          <h2>Control your money</h2>
         </div>
         <div className="main-section">
           <div className="border">
             <div className="content">
-              <h3>Керуйте своїми фінансами з легкістю</h3>
+            <h3>Manage Your Finances with Ease</h3>
               <p>
-                Завдяки сайту MoneyHack користувачі зможуть легко і зручно
-                керувати своїми фінансами. Сайт пропонує можливість
-                відстежування доходів та витрат, додавання, видалення та
-                редагування фінансових операцій, а також генерацію звіту про
-                фінансовий стан користувача з можливістю фільтрації за різними
-                параметрами. Завдяки MoneyHack користувачі зможуть контролювати
-                свої фінанси з легкістю та забезпечити стабільність своєї
-                фінансової ситуації.
+                With the MoneyHack website, users can easily and conveniently manage their finances. 
+                The site offers the ability to track income and expenses, add, delete, and edit financial transactions, 
+                as well as generate a financial report with filtering options based on various parameters. 
+                Thanks to MoneyHack, users will be able to control their finances effortlessly and ensure the stability 
+                of their financial situation.
               </p>
               <Link to="/login" className="try-now">
-                Спробувати зараз!
+                Try Now!
               </Link>
             </div>
           </div>
