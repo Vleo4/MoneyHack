@@ -186,7 +186,7 @@ const profitData = [
                     key={spend.category}
                   >
                     <p>{spend.category}</p>
-                    <p>{spend.value} ГРН</p>
+                    <p>{spend.value} $</p>
                   </div>
                 ))}
               </div>
@@ -215,7 +215,7 @@ const profitData = [
                     key={profit.category}
                   >
                     <p>{profit.category}</p>
-                    <p>{profit.value} ГРН</p>
+                    <p>{profit.value} $</p>
                   </div>
                 ))}
               </div>
