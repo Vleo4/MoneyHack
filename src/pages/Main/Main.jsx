@@ -167,12 +167,12 @@ const profitData = [
           </div>
           <div className="service-text-wrapper">
             <div className="service-text">
-              <h2>Що може наш сервіс?</h2>
+              <h2>What our service can do</h2>
             </div>
           </div>
           <div className="spend-block">
             <div className="spend-block-text">
-              <h2>Кількість витрат у категорії</h2>
+              <h2>Loss amount</h2>
               <div className="spend-block-text-wrapper">
                 {spendData.map((spend, index) => (
                   <div
@@ -201,7 +201,7 @@ const profitData = [
           </div>
           <div className="profit-block">
             <div className="profit-block-text">
-              <h2>Кількість профіту за рік</h2>
+              <h2>Profit amount</h2>
               <div className="profit-block-text-wrapper">
                 {profitData.map((profit, index) => (
                   <div
